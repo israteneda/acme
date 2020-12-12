@@ -1,5 +1,6 @@
 # ACME
 
+<details><summary>Problem Description</summary>
 The company ACME offers their employees the flexibility to work the hours they want. They will pay for the hours worked based on the day of the week and time of day, according to the following table:
 
 | Monday - Friday      | Saturday and Sunday  |
@@ -20,7 +21,8 @@ The goal of this exercise is to calculate the total that the company has to pay 
 
 For example:
 
-| Case       | Case 1:                                                                    | Case 2:                                          |
+| Case       | Case 1                                                                     | Case 2                                           |
 |------------|----------------------------------------------------------------------------|--------------------------------------------------|
 | **Input**  | RENE=MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00 | ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00 |
 | **Output** | The amount to pay RENE is: 215 USD                                         | The amount to pay ASTRID is: 85 USD              |
+</details>
