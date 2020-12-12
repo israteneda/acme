@@ -2,7 +2,7 @@
 
 Console app to calculate the total that the company has to pay an employee.
 
-You can also check the docs on: https://acme-exercise.readthedocs.io/en/latest/
+You can also check the docs at: https://acme-exercise.readthedocs.io/en/latest/
 
 <details><summary>Problem Description</summary>
 The company ACME offers their employees the flexibility to work the hours they want. They will pay for the hours worked based on the day of the week and time of day, according to the following table:
