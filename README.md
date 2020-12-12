@@ -35,7 +35,7 @@ For example:
 </details>
 
 <details><summary>Approach & Methodology</summary>
-For the app development I used [Kanban Method](https://en.wikipedia.org/wiki/Kanban_(development)) and [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique). 
+For the app development I used <a href="https://en.wikipedia.org/wiki/Kanban_(development)" target="_blank">Kanban Method</a> and <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="_blank">Pomodoro Technique</a>. 
 </details>
 
 <details><summary>Install & Run</summary>
