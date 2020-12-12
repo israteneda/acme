@@ -1,4 +1,6 @@
 <h1 align="center">ACME</h1>
+  
+[![github action](https://github.com/israteneda/acme/workflows/tests/badge.svg)](https://github.com/israteneda/acme/actions)
 
 ![](https://i.imgur.com/XyOI6vj.gif)
 
