@@ -1,5 +1,4 @@
 <h1 align="center">ACME</h1>
-<div align="center">
 
 ![](https://i.imgur.com/XyOI6vj.gif)
 
