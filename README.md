@@ -1,4 +1,7 @@
-# ACME
+<h1 align="center">ACME</h1>
+<div align="center">
+
+![](https://i.imgur.com/XyOI6vj.gif)
 
 Console app to calculate the total that the company has to pay an employee.
 
