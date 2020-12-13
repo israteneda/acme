@@ -1,6 +1,7 @@
 ![](https://i.imgur.com/XyOI6vj.gif)
 
 [![github action](https://github.com/israteneda/acme/workflows/tests/badge.svg)](https://github.com/israteneda/acme/actions)
+[![codecov](https://codecov.io/gh/israteneda/acme/branch/main/graph/badge.svg?token=VFOOKJY89R)](https://codecov.io/gh/israteneda/acme)
 
 Console app to calculate the total that the company has to pay an employee.
 
