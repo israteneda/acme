@@ -27,7 +27,6 @@ def read_file_lines(path: str) -> str:
 
 
 def calculate_day_cost(day: str, hours: str) -> float:
-    print(day)
     time_worked = hours.split('-')
     seconds_worked = []
     cost: float = 0.00

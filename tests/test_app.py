@@ -7,10 +7,10 @@ from acme.app import file_path, read_file_lines, calculate_salary, show_salary, 
 
 class TestApp(unittest.TestCase):
 
-    def test_find_file(self):
-        output: str = file_path('data.txt')
+    # def test_find_file(self):
+    #     output: str = file_path('data.txt')
 
-        self.assertEqual('I:\\Code\\acme\\data.txt', output)
+    #     self.assertEqual('I:\\Code\\acme\\data.txt', output)
 
     def test_read_file_lines(self):
         path: str = file_path('data.txt')
