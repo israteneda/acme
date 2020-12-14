@@ -1,2 +1,3 @@
 ignore:
   - "acme/__main__.py"
+  - "setup.py"
