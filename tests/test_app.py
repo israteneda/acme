@@ -18,7 +18,7 @@ class TestApp(unittest.TestCase):
     #     self.assertEqual('I:\\Code\\acme\\data.txt', output)
 
     def test_read_file_lines(self):
-        path: str = file_path('data.txt')
+        path: str = file_path('acme/data/employees.txt')
         output: str = read_file_lines(path)
 
         self.assertEqual(
@@ -26,8 +26,8 @@ class TestApp(unittest.TestCase):
             'ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00', output)
 
     def test_name_in_the_output(self):
-        path: str = file_path('data.txt')
-        output: str = show_salary('data.txt')
+        path: str = file_path('acme/data/employees.txt')
+        output: str = show_salary('acme/data/employees.txt')
 
         self.assertRegex(output, 'RENE')
         self.assertRegex(output, 'ASTRID')
