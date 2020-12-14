@@ -27,7 +27,7 @@ class TestCommands(unittest.TestCase):
                 self.assertEqual(data, ans)
 
     def test_acme_file(self):
-        test = ['data.txt']
+        test = ['data/employees.txt']
         out = io.StringIO()
         with cl.redirect_stdout(out):
             processing(test)

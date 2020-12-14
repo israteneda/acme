@@ -1,6 +1,5 @@
 import os
 from acme.working_hours import WorkingHours
-from pathlib import Path
 
 workweek = ['MO', 'TU', 'WE', 'TH', 'FR']
 weekend = ['SA', 'SU']
@@ -23,9 +22,8 @@ def demo():
 
 def file_path(relative_path: str) -> str:
     dir: str = os.path.dirname(os.path.abspath(__file__))
-    root_dir = Path(dir).parent
     split_path = relative_path.split("/")
-    new_path: str = os.path.join(root_dir, *split_path)
+    new_path: str = os.path.join(dir, *split_path)
     return new_path
 
 

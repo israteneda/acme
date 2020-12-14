@@ -42,7 +42,7 @@ For example:
 
 First I started with the set up of the environment, creating the repository, docs, adding the readme.md and GitHub configuration.
 
-Secondly I started thinking how structure the console app, so I search for some examples on GitHub, after that I create the app structure, I was modeling architecture using C4 Model.
+Secondly I started thinking how structure the console app, so I search for some examples on GitHub, after that I create the app structure and architecture using C4 Model.
 
 To start with the functional side I decided to develop a minimum viable implementation to refactor later. I implemented the basic functionality with the provided use cases.
 
