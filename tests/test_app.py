@@ -6,6 +6,7 @@ from acme.app import file_path, read_file_lines, calculate_salary, show_salary, 
 
 # TESTDATA_FILENAME = os.path.join(os.path.dirname(__file__), 'testdata.html')
 
+
 class TestApp(unittest.TestCase):
 
     # def setUp(self):
@@ -30,11 +31,13 @@ class TestApp(unittest.TestCase):
 
         self.assertRegex(output, 'RENE')
         self.assertRegex(output, 'ASTRID')
-    
+
     def test_calculate_salary_amount(self):
-        output: float = calculate_salary('MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00')
+        output: float = calculate_salary(
+            'MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00')
         self.assertEqual(215, output)
-        output: float = calculate_salary('MO10:00-12:00,TH12:00-14:00,SU20:00-21:00')
+        output: float = calculate_salary(
+            'MO10:00-12:00,TH12:00-14:00,SU20:00-21:00')
         self.assertEqual(85, output)
 
     def test_calculate_day_cost(self):

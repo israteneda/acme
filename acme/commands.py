@@ -1,5 +1,6 @@
 from acme.app import run, demo
 
+
 def check(argv):
     # Check if some action is completed
     completed = 0
@@ -11,7 +12,7 @@ def check(argv):
         elif argv[0] == '-d' or argv[0] == '--demo':
             completed = demo()
         else:
-            completed = run()
+            completed = run(argv[0])
     return completed
 
 
@@ -20,10 +21,16 @@ def processing(argv):
     options = ['-d', '--demo', '-h', '--help']
     is_option = argv[0] in options or argv[0].endswith('.txt')
     completed = 0
+    res = ''
     if is_option:
         completed = check(argv)
+    elif not argv[0].startswith('-'):
+        res += '\nCheck the file is in the same directory'
+        res += '\nAlso check the correct file extension (.txt)'
     if not completed:
-        print('\nInvalid argument.')
+        res += '\nInvalid argument.'
+        res += '\nFor more information run: acme --help'
+    print(res)
 
 
 def instructions():
