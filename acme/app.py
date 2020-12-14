@@ -1,9 +1,9 @@
 import os
-from acme.working_hours import WorkingHours
+from entities import *
+from utils import *
+from data.shiftwork import shiftwork
+from acme.data.rates import rates
 from pathlib import Path
-
-workweek = ['MO', 'TU', 'WE', 'TH', 'FR']
-weekend = ['SA', 'SU']
 
 
 def run(param):
@@ -38,32 +38,33 @@ def read_file_lines(path: str) -> str:
 
 
 def calculate_day_cost(day: str, hours: str) -> float:
-    time_worked = hours.split('-')
-    seconds_worked = []
-    cost: float = 0.00
-    for time in time_worked:
-        (h, m) = time.split(':')
-        seconds_worked.append(int(h) * 3600 + int(m) * 60)
+    day = Day(day)
+    start_time, end_time = hours.split('-')
+    start_time: float = to_hours(start_time)
+    end_time: float = to_hours(end_time)
 
-    if day in workweek:
-        early_morning = WorkingHours(
-            initial_time=3600, final_time=32459, cost=25.00)
-        day = WorkingHours(initial_time=32460, final_time=64859, cost=15.00)
-        night = WorkingHours(initial_time=64860, final_time=86400, cost=20.00)
-    else:
-        early_morning = WorkingHours(
-            initial_time=3600, final_time=32459, cost=30.00)
-        day = WorkingHours(initial_time=32460, final_time=64859, cost=20.00)
-        night = WorkingHours(initial_time=64860, final_time=86400, cost=25.00)
+    salary: float = 0
+    total_hours: float = end_time - start_time
 
-    working_hours = [early_morning, day, night]
+    while total_hours != 0:
+        for shift in shiftwork:
+            if start_time >= to_hours(shift.start_time) and start_time <= to_hours(shift.end_time):
+                if end_time <= to_hours(shift.end_time):
+                    total_hours -= end_time - start_time
+                    salary += (end_time - start_time) * \
+                        rates[shift.name][day.get_week()]
+                    # print(total_hours, start_time, end_time, shift.name, day.abbrev, day.get_week(), rates[shift.name][day.get_week()])
+                else:
+                    total_hours -= to_hours(shift.end_time) + \
+                        (1 / 60) - start_time
+                    salary += (to_hours(shift.end_time) - start_time) * \
+                        rates[shift.name][day.get_week()]
+                    start_time = to_hours(shift.end_time) + (1 / 60)
 
-    for stage_day in working_hours:
-        if seconds_worked[0] >= stage_day.initial_time and seconds_worked[1] <= stage_day.final_time:
-            cost = abs(seconds_worked[1] -
-                       seconds_worked[0]) / 3600 * stage_day.cost
+            if total_hours == 0:
+                break
 
-    return cost
+    print(salary)
 
 
 def calculate_salary(time_worked: str) -> float:
@@ -87,3 +88,8 @@ def show_salary(file):
         output += f'The amount to pay {name} is: {amount} USD\n'
 
     return output
+
+
+calculate_day_cost('MO', '10:00-12:00')
+calculate_day_cost('MO', '05:00-11:00')
+calculate_day_cost('MO', '06:00-18:00')

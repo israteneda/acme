@@ -2,9 +2,8 @@ from acme.app import run, demo
 
 
 def check(argv):
-    # Check if some action is completed
+    # Check if some command is completed
     completed = 0
-    # Check if option is -c and args is specified
     if len(argv) == 1:
         if argv[0] == '-h' or argv[0] == '--help':
             instructions()
