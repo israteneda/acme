@@ -1,0 +1,24 @@
+      ______    ______   __       __  ________ 
+     /      \  /      \ |  \     /  \|        \
+    |  $$$$$$\|  $$$$$$\| $$\   /  $$| $$$$$$$$
+    | $$__| $$| $$   \$$| $$$\ /  $$$| $$__    
+    | $$    $$| $$      | $$$$\  $$$$| $$  \   
+    | $$$$$$$$| $$   __ | $$\$$ $$ $$| $$$$$   
+    | $$  | $$| $$__/  \| $$ \$$$| $$| $$_____ 
+    | $$  | $$ \$$    $$| $$  \$ | $$| $$     \
+     \$$   \$$  \$$$$$$  \$$      \$$ \$$$$$$$$
+
+    Usage:
+        acme <file>
+
+        Ensure the file is a text (.txt) file
+
+    Options:
+        -d  : Create a demo file with default name (data.txt)
+              and execute the app (also --demo)
+        -h  : Print the instructions (also --help)
+
+    Examples:
+        acme data.txt
+        acme --demo
+        acme -h

@@ -1,13 +1,14 @@
-from acme.app import run
+from acme.commands import processing, instructions
 import sys
+
 
 def main():
     argv = sys.argv[1:]
-    if len(argv) == 1:
-        run(argv)
+    if len(argv) >= 1:
+        processing(argv)
     else:
-        print('Wrong command: Please go to the documentation')
+        instructions()
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()

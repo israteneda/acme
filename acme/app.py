@@ -5,9 +5,18 @@ from pathlib import Path
 workweek = ['MO', 'TU', 'WE', 'TH', 'FR']
 weekend = ['SA', 'SU']
 
-def run(argv) -> str:
-    print(argv)
+def run():
     print(show_salary())
+    return 1
+
+def demo():
+    f = open("data.txt", "w+")
+    f.write('RENE=MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00\n'
+    'ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00')
+    f.close()
+    print(show_salary())
+    
+    return 1
 
 
 def file_path(relative_path: str) -> str:
@@ -67,10 +76,10 @@ def calculate_salary(time_worked: str) -> float:
 def show_salary():
     path: str = file_path('data.txt')
     lines = read_file_lines(path).split('\n')
-    output: str = ''
+    output: str = '\n'
     for line in lines:
         name: str = line.split('=')[0]
         amount: float = calculate_salary(line.split('=')[1])
-        output += f'The amount to pay {name} is: {amount} USD'
+        output += f'The amount to pay {name} is: {amount} USD\n'
 
     return output

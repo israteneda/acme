@@ -4,8 +4,12 @@ from unittest.mock import patch
 
 from acme.app import file_path, read_file_lines, calculate_salary, show_salary, calculate_day_cost
 
+# TESTDATA_FILENAME = os.path.join(os.path.dirname(__file__), 'testdata.html')
 
 class TestApp(unittest.TestCase):
+
+    # def setUp(self):
+    #    self.testdata = open(TESTDATA_FILENAME).read()
 
     # def test_find_file(self):
     #     output: str = file_path('data.txt')
@@ -20,7 +24,7 @@ class TestApp(unittest.TestCase):
             'RENE=MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00\n'
             'ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00', output)
 
-    def test_show_name_in_the_output(self):
+    def test_name_in_the_output(self):
         path: str = file_path('data.txt')
         output: str = show_salary()
 
