@@ -27,7 +27,7 @@ class TestApp(unittest.TestCase):
 
     def test_name_in_the_output(self):
         path: str = file_path('data.txt')
-        output: str = show_salary()
+        output: str = show_salary('data.txt')
 
         self.assertRegex(output, 'RENE')
         self.assertRegex(output, 'ASTRID')

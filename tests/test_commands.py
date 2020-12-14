@@ -18,8 +18,13 @@ class TestCommands(unittest.TestCase):
             with cl.redirect_stdout(out):
                 processing(test)
             data = out.getvalue()
-            ans = '\nInvalid argument.\n'
-            self.assertEqual(data, ans)
+            ans = '\nInvalid argument.\nFor more information run: acme --help\n'
+            # convert item list to string
+            if ''.join(test).startswith('-'):
+                self.assertEqual(data, ans)
+            else:
+                ans = '\nCheck the file is in the same directory\nAlso check the correct file extension (.txt)'  + ans
+                self.assertEqual(data, ans)
 
     def test_acme_file(self):
         test = ['data.txt']
@@ -27,7 +32,7 @@ class TestCommands(unittest.TestCase):
         with cl.redirect_stdout(out):
             processing(test)
         data = out.getvalue()
-        ans = '\nThe amount to pay RENE is: 215.0 USD\nThe amount to pay ASTRID is: 85.0 USD\n\n'
+        ans = '\nThe amount to pay RENE is: 215.0 USD\nThe amount to pay ASTRID is: 85.0 USD\n\n\n'
         self.assertEqual(data, ans)
         pass
 
