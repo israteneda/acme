@@ -35,15 +35,15 @@ class TestApp(unittest.TestCase):
     def test_calculate_salary_amount(self):
         output: float = calculate_salary(
             'MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00')
-        self.assertEqual(215, output)
+        self.assertEqual(215.0, output)
         output: float = calculate_salary(
             'MO10:00-12:00,TH12:00-14:00,SU20:00-21:00')
-        self.assertEqual(85, output)
+        self.assertEqual(85.0, output)
 
     def test_calculate_day_cost(self):
         output: float = calculate_day_cost('MO', '10:00-12:00')
 
-        self.assertEqual(30, output)
+        self.assertEqual(30.0, output)
 
 
 if __name__ == '__main__':

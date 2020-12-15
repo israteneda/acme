@@ -1,7 +1,7 @@
 import os
-from entities import *
-from utils import *
-from data.shiftwork import shiftwork
+from acme.entities import *
+from acme.utils import *
+from acme.data.shiftwork import shiftwork
 from acme.data.rates import rates
 from pathlib import Path
 
@@ -47,8 +47,6 @@ def calculate_day_cost(day: str, hours: str) -> float:
     cost: float = 0
     total_hours: float = working_hours.get_total()
 
-    # print(total_hours)
-
     while True:
         for shift in shiftwork:
             if(working_hours.start_time > 24):
@@ -56,34 +54,30 @@ def calculate_day_cost(day: str, hours: str) -> float:
             if(working_hours.end_time > 24):
                 working_hours.end_time -= 24
 
-            # print(truncate(working_hours.start_time, 1), truncate(working_hours.end_time, 1), truncate(
-            #     shift.start_time, 1), truncate(shift.end_time, 1), cost, total_hours, working_hours.get_total())
             if truncate(working_hours.start_time, 1) >= truncate(shift.start_time, 1) and truncate(working_hours.end_time, 1) <= truncate(shift.end_time, 1):
                 if working_hours.start_time <= working_hours.end_time:
-                    # print('if')
-                    # print(cost, shift.end_time, working_hours.start_time, rates[shift.name][day.get_week()], shift.name, day.get_week())
-                    cost += working_hours.get_total() * rates[shift.name][day.get_week()]
+                    cost += working_hours.get_total() * \
+                        rates[shift.name][day.get_week()]
                     working_hours.start_time = working_hours.end_time
                 else:
-                    # print('else')
-                    # print(cost, shift.end_time, working_hours.start_time, rates[shift.name][day.get_week()], shift.name, day.get_week())
-                    cost += (shift.end_time - working_hours.start_time + ONE_MINUTE) * rates[shift.name][day.get_week()]
+                    cost += (shift.end_time - working_hours.start_time +
+                             ONE_MINUTE) * rates[shift.name][day.get_week()]
                     working_hours.start_time = shift.end_time + ONE_MINUTE
-            
-            if truncate(working_hours.start_time, 1) >= truncate(shift.start_time, 1) and truncate(working_hours.end_time, 1) > truncate(shift.end_time, 3):
-                    # print('else fuera')
-                    # print(cost, shift.end_time, working_hours.start_time, rates[shift.name][day.get_week()], shift.name, day.get_week())
-                    cost += (shift.end_time - working_hours.start_time) * rates[shift.name][day.get_week()]
-                    working_hours.start_time = shift.end_time
+
+            if truncate(working_hours.start_time, 1) >= truncate(shift.start_time, 1) and \
+                    truncate(working_hours.start_time, 1) <= truncate(shift.end_time, 1) and \
+                    truncate(working_hours.end_time, 1) > truncate(shift.end_time, 1):
+                cost += (shift.end_time - working_hours.start_time) * \
+                    rates[shift.name][day.get_week()]
+                working_hours.start_time = shift.end_time
 
             if working_hours.get_total() == 0:
                 break
 
         if working_hours.get_total() == 0:
-                break
-            
+            break
 
-    print(cost)
+    return cost
 
 
 def calculate_salary(time_worked: str) -> float:
@@ -109,13 +103,4 @@ def show_salary(file):
     return output
 
 
-calculate_day_cost('SA', '10:00-12:00')
-calculate_day_cost('TU', '18:00-18:00')
-calculate_day_cost('MO', '00:01-9:00')
-calculate_day_cost('MO', '08:00-5:00')
-calculate_day_cost('MO', '18:00-20:00')
-
-calculate_day_cost('MO', '05:00-11:00')
-calculate_day_cost('MO', '06:00-18:00')
-calculate_day_cost('MO', '03:00-11:00')
-calculate_day_cost('SA', '03:00-22:00')
+calculate_day_cost('MO', '20:00-21:00')
