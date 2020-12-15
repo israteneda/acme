@@ -1,29 +1,28 @@
 import os
 import sys
 import unittest
-from acme.app import file_path, read_file_lines, calculate_salary, get_employees, calculate_day_cost
+from acme.app import get_file_path, read_file_lines, calculate_salary, get_employees, calculate_day_cost
 
 
 class TestApp(unittest.TestCase):
 
     def setUp(self):
-        self.dirname = ''
         # Check if SO is Windows
         if os.name == 'nt':
-            self.dirname = 'acme\\data\\employees.txt'
+            self.employees_get_file_path = 'acme\\data\\employees.txt'
         else:
-            self.dirname = 'acme/data/employees.txt'
+            self.employees_get_file_path = 'acme/data/employees.txt'
 
 
     def test_find_file(self):
         current_dir = os.getcwd()
-        file_dir: str = file_path(self.dirname)
+        filepath: str = get_file_path(self.employees_get_file_path)
 
         self.assertEqual(os.path.join(
-            current_dir, self.dirname), file_dir)
+            current_dir, self.employees_get_file_path), filepath)
 
     def test_read_file_lines(self):
-        path: str = file_path(self.dirname)
+        path: str = get_file_path(self.employees_get_file_path)
         file_lines: str = read_file_lines(path)
         with open(path) as file:
             content = file.read()
@@ -31,8 +30,8 @@ class TestApp(unittest.TestCase):
         self.assertEqual(content, file_lines)
 
     def test_names_in_the_output(self):
-        path: str = file_path(self.dirname)
-        employees: str = get_employees(self.dirname)
+        path: str = get_file_path(self.employees_get_file_path)
+        employees: str = get_employees(self.employees_get_file_path)
         employees_names = [employee.name for employee in employees]
 
         self.assertTrue('RENE' in employees_names)

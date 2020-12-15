@@ -9,12 +9,13 @@ import contextlib as cl
 class TestCommands(unittest.TestCase):
 
     def setUp(self):
-        self.dirname = ''
         # Check if SO is Windows
         if os.name == 'nt':
-            self.dirname = 'data\\salaries.txt'
+            self.salary_file_path = 'data\\salaries.txt'
+            self.employees_file_path = 'acme\\data\\employees.txt'
         else:
-            self.dirname = 'data/salaries.txt'
+            self.salary_file_path = 'data/salaries.txt'
+            self.employees_file_path = 'acme/data/employees.txt'
 
     def test_processing_wrong_arguments(self):
         tests = [
@@ -31,14 +32,14 @@ class TestCommands(unittest.TestCase):
             self.assertEqual(data, err)
 
     def test_acme_command(self):
-        test = ['acme\\data\\employees.txt']
+        test = [self.employees_file_path]
         out = io.StringIO()
         with cl.redirect_stdout(out):
             processing(test)
         data = out.getvalue()
         # Read sample salaries
-        file_dir = dirname = os.path.dirname(os.path.realpath(__file__))
-        path: str = os.path.join(file_dir, self.dirname)
+        file_path = os.path.dirname(os.path.realpath(__file__))
+        path: str = os.path.join(file_path, self.salary_file_path)
         with open(path) as file:
             content = file.read()
 

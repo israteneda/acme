@@ -34,7 +34,7 @@ def demo():
     return completed
 
 
-def file_path(relative_path: str) -> str:
+def get_file_path(relative_path: str) -> str:
     current_dir = os.getcwd()
     split_path = relative_path.split("/")
     new_path: str = os.path.join(current_dir, *split_path)
@@ -109,7 +109,7 @@ def calculate_salary(time_worked: str) -> float:
 
 
 def get_employees(file):
-    path: str = file_path(file)
+    path: str = get_file_path(file)
     file_content = read_file_lines(path)
     employees = []
     if file_content:
