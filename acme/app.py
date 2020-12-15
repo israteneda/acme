@@ -5,7 +5,6 @@ from acme.entities.shift import Shift
 from acme.entities.day import Day
 from acme.data.shiftwork import shiftwork
 from acme.data.rates import rates
-from acme.exceptions import *
 from acme.utils import *
 
 
