@@ -5,6 +5,8 @@ from data.shiftwork import shiftwork
 from acme.data.rates import rates
 from pathlib import Path
 
+ONE_MINUTE = 1 / 60
+
 
 def run(param):
     print(show_salary(param))
@@ -40,31 +42,48 @@ def read_file_lines(path: str) -> str:
 def calculate_day_cost(day: str, hours: str) -> float:
     day = Day(day)
     start_time, end_time = hours.split('-')
-    start_time: float = to_hours(start_time)
-    end_time: float = to_hours(end_time)
+    working_hours = WorkingHours(start_time, end_time)
 
-    salary: float = 0
-    total_hours: float = end_time - start_time
+    cost: float = 0
+    total_hours: float = working_hours.get_total()
 
-    while total_hours != 0:
+    # print(total_hours)
+
+    while True:
         for shift in shiftwork:
-            if start_time >= to_hours(shift.start_time) and start_time <= to_hours(shift.end_time):
-                if end_time <= to_hours(shift.end_time):
-                    total_hours -= end_time - start_time
-                    salary += (end_time - start_time) * \
-                        rates[shift.name][day.get_week()]
-                    # print(total_hours, start_time, end_time, shift.name, day.abbrev, day.get_week(), rates[shift.name][day.get_week()])
-                else:
-                    total_hours -= to_hours(shift.end_time) + \
-                        (1 / 60) - start_time
-                    salary += (to_hours(shift.end_time) - start_time) * \
-                        rates[shift.name][day.get_week()]
-                    start_time = to_hours(shift.end_time) + (1 / 60)
+            if(working_hours.start_time > 24):
+                working_hours.start_time -= 24
+            if(working_hours.end_time > 24):
+                working_hours.end_time -= 24
 
-            if total_hours == 0:
+            # print(truncate(working_hours.start_time, 1), truncate(working_hours.end_time, 1), truncate(
+            #     shift.start_time, 1), truncate(shift.end_time, 1), cost, total_hours, working_hours.get_total())
+            if truncate(working_hours.start_time, 1) >= truncate(shift.start_time, 1) and truncate(working_hours.end_time, 1) <= truncate(shift.end_time, 1):
+                if working_hours.start_time <= working_hours.end_time:
+                    # print('if')
+                    # print(cost, shift.end_time, working_hours.start_time, rates[shift.name][day.get_week()], shift.name, day.get_week())
+                    cost += working_hours.get_total() * rates[shift.name][day.get_week()]
+                    working_hours.start_time = working_hours.end_time
+                else:
+                    # print('else')
+                    # print(cost, shift.end_time, working_hours.start_time, rates[shift.name][day.get_week()], shift.name, day.get_week())
+                    cost += (shift.end_time - working_hours.start_time + ONE_MINUTE) * rates[shift.name][day.get_week()]
+                    working_hours.start_time = shift.end_time + ONE_MINUTE
+            
+            if truncate(working_hours.start_time, 1) >= truncate(shift.start_time, 1) and truncate(working_hours.end_time, 1) > truncate(shift.end_time, 3):
+                    # print('else fuera')
+                    # print(cost, shift.end_time, working_hours.start_time, rates[shift.name][day.get_week()], shift.name, day.get_week())
+                    cost += (shift.end_time - working_hours.start_time) * rates[shift.name][day.get_week()]
+                    working_hours.start_time = shift.end_time
+
+            if working_hours.get_total() == 0:
                 break
 
-    print(salary)
+        if working_hours.get_total() == 0:
+                break
+            
+
+    print(cost)
 
 
 def calculate_salary(time_worked: str) -> float:
@@ -90,6 +109,13 @@ def show_salary(file):
     return output
 
 
-calculate_day_cost('MO', '10:00-12:00')
+calculate_day_cost('SA', '10:00-12:00')
+calculate_day_cost('TU', '18:00-18:00')
+calculate_day_cost('MO', '00:01-9:00')
+calculate_day_cost('MO', '08:00-5:00')
+calculate_day_cost('MO', '18:00-20:00')
+
 calculate_day_cost('MO', '05:00-11:00')
 calculate_day_cost('MO', '06:00-18:00')
+calculate_day_cost('MO', '03:00-11:00')
+calculate_day_cost('SA', '03:00-22:00')
