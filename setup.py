@@ -1,8 +1,10 @@
 from setuptools import setup, find_packages
 
+from acme import __version__
+
 setup(
     name="acme-exercise",
-    version="0.0.1",
+    version=__version__,
     description="Console app to calculate the total that the company has to pay an employee.",
     author="Israel Teneda",
     author_email="israteneda@gmail.com",
