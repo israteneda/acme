@@ -32,7 +32,7 @@ class TestCommands(unittest.TestCase):
         with cl.redirect_stdout(out):
             processing(test)
         data = out.getvalue()
-        ans = '\nThe amount to pay RENE is: 215.0 USD\nThe amount to pay ASTRID is: 85.0 USD\n\n\n'
+        ans = '\nThe amount to pay RENE is: 215.0 USD\nThe amount to pay ASTRID is: 85.0 USD\nThe amount to pay ERICK is: 395.0 USD\n\n\n'
         self.assertEqual(data, ans)
         pass
 
