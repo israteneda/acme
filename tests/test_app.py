@@ -1,21 +1,31 @@
-import unittest
 import os
-from unittest.mock import patch
+import sys
+import unittest
+
 
 from acme.app import file_path, read_file_lines, calculate_salary, get_employees, calculate_day_cost
 
 
 class TestApp(unittest.TestCase):
 
+    def setUp(self):
+        self.dirname = ''
+        # Check if SO is Windows
+        if os.name == 'nt':
+            self.dirname = 'acme\\data\\employees.txt'
+        else:
+            self.dirname = 'acme/data/employees.txt'
+
+
     def test_find_file(self):
         current_dir = os.getcwd()
-        output: str = file_path('acme/data/data.txt')
+        output: str = file_path(self.dirname)
 
         self.assertEqual(os.path.join(
-            current_dir, 'acme\\data\\data.txt'), output)
+            current_dir, self.dirname), output)
 
     def test_read_file_lines(self):
-        path: str = file_path('acme/data/employees.txt')
+        path: str = file_path(self.dirname)
         output: str = read_file_lines(path)
 
         self.assertEqual(
@@ -24,8 +34,8 @@ class TestApp(unittest.TestCase):
             'ERICK=MO5:00-11:00,TH8:00-17:00,SU01:00-05:00', output)
 
     def test_names_in_the_output(self):
-        path: str = file_path('acme/data/employees.txt')
-        employees: str = get_employees('acme/data/employees.txt')
+        path: str = file_path(self.dirname)
+        employees: str = get_employees(self.dirname)
         employees_names = [employee.name for employee in employees]
 
         self.assertTrue('RENE' in employees_names)
