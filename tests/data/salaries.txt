@@ -1,0 +1,6 @@
+The amount to pay RENE is: 215.0 USD
+The amount to pay ASTRID is: 85.0 USD
+The amount to pay WLADYMIR is: 395.0 USD
+The amount to pay JOSEPH is: 659.83 USD
+The amount to pay JANINA is: 944.66 USD
+The amount to pay MARJORIE is: 170.0 USD

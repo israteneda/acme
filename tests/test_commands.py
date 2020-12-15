@@ -1,11 +1,20 @@
+import io
+import os
+import re
 import unittest
 from acme.commands import processing
 import contextlib as cl
-import io
-import re
 
 
 class TestCommands(unittest.TestCase):
+
+    def setUp(self):
+        self.dirname = ''
+        # Check if SO is Windows
+        if os.name == 'nt':
+            self.dirname = 'data\\salaries.txt'
+        else:
+            self.dirname = 'data/salaries.txt'
 
     def test_processing_wrong_arguments(self):
         tests = [
@@ -18,23 +27,23 @@ class TestCommands(unittest.TestCase):
             with cl.redirect_stdout(out):
                 processing(test)
             data = out.getvalue()
-            ans = '\nInvalid argument.\nFor more information run: acme --help\n'
-            # convert item list to string
-            if ''.join(test).startswith('-'):
-                self.assertEqual(data, ans)
-            else:
-                ans = '\nCheck the file is in the same directory\nAlso check the correct file extension (.txt)\n'  + ans
-                self.assertEqual(data, ans)
+            err = 'Invalid argument.\nFor more information run: acme --help\n'
+            self.assertEqual(data, err)
 
-    def test_acme_file(self):
-        test = ['acme/data/employees.txt']
+    def test_acme_command(self):
+        test = ['acme\\data\\employees.txt']
         out = io.StringIO()
         with cl.redirect_stdout(out):
             processing(test)
         data = out.getvalue()
-        ans = 'The amount to pay RENE is: 215.0 USD\nThe amount to pay ASTRID is: 85.0 USD\nThe amount to pay ERICK is: 395.0 USD\n'
-        self.assertEqual(data, ans)
-        pass
+        # Read sample salaries
+        file_dir = dirname = os.path.dirname(os.path.realpath(__file__))
+        path: str = os.path.join(file_dir, self.dirname)
+        with open(path) as file:
+            content = file.read()
+
+        self.assertEqual(data, content)
+
 
     def test_acme_instructions(self):
         test = ['--help']

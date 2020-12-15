@@ -23,12 +23,10 @@ def demo():
     try:
         dirname = os.path.dirname(os.path.realpath(__file__))
         employess_file_path = os.path.join(dirname, "data/employees.txt")
-        base_file = open(employess_file_path, "r")
-        content = base_file.read()
-        file = open("employess.txt", "w+")
-        file.write(content)
-        base_file.close()
-        file.close()
+        with open(employess_file_path, "r") as base_file:
+            content = base_file.read()
+            with open("employess.txt", "w+") as file:
+                file.write(content)
         completed = run('employess.txt')
     except FileNotFoundError:
         print('An error occurred in the demo execution')

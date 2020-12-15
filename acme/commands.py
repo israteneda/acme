@@ -25,7 +25,7 @@ def processing(argv):
     """Processing the command and check argument"""
     
     options = ['-d', '--demo', '-h', '--help']
-    is_option = argv[0] in options or argv[0].endswith('.txt') or not argv[0].startswith('-')
+    is_option = argv[0] in options or argv[0].endswith('.txt')
     
     completed = FAIL
 
