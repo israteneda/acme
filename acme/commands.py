@@ -4,6 +4,7 @@ SUCCESS = 1
 FAIL = 0
 ERROR = -1
 
+
 def check(argv):
     """Check if some command is completed"""
 
@@ -23,10 +24,10 @@ def check(argv):
 
 def processing(argv):
     """Processing the command and check argument"""
-    
+
     options = ['-d', '--demo', '-h', '--help']
     is_option = argv[0] in options or argv[0].endswith('.txt')
-    
+
     completed = FAIL
 
     if is_option:
@@ -39,6 +40,7 @@ def processing(argv):
 
     if completed != SUCCESS:
         print(err.get(completed))
+
 
 def instructions():
     """Print the instructions"""

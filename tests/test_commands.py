@@ -45,7 +45,6 @@ class TestCommands(unittest.TestCase):
 
         self.assertEqual(data, content)
 
-
     def test_acme_instructions(self):
         test = ['--help']
         out = io.StringIO()

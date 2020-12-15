@@ -7,12 +7,11 @@ from acme.app import get_file_path, read_file_lines, calculate_salary, get_emplo
 class TestApp(unittest.TestCase):
 
     def setUp(self):
-        # Check if SO is Windows
+        # Check if OS is Windows
         if os.name == 'nt':
             self.employees_get_file_path = 'acme\\data\\employees.txt'
         else:
             self.employees_get_file_path = 'acme/data/employees.txt'
-
 
     def test_find_file(self):
         current_dir = os.getcwd()
@@ -50,10 +49,12 @@ class TestApp(unittest.TestCase):
         self.assertEqual(395.0, output)
 
     def test_calculate_day_cost(self):
-        output: float = calculate_day_cost('MO', '10:00-12:00')
-        self.assertEqual(30.0, output)
-        output: float = calculate_day_cost('SU', '20:00-21:00')
-        self.assertEqual(25.0, output)
+        cost: float = calculate_day_cost('MO', '10:00-12:00')
+        self.assertEqual(30.0, cost)
+        cost: float = calculate_day_cost('SU', '20:00-21:00')
+        self.assertEqual(25.0, cost)
+        cost: float = calculate_day_cost('TU', '8:00-17:00')
+        self.assertEqual(145.0, cost)
 
 
 if __name__ == '__main__':

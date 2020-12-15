@@ -13,7 +13,8 @@ def run(file):
     employees = get_employees(file)
     if employees:
         for employee in employees:
-            print(f'The amount to pay {employee.name} is: {truncate(employee.salary, 2)} USD')
+            print(
+                f'The amount to pay {employee.name} is: {truncate(employee.salary, 2)} USD')
         completed = 1
 
     return completed
@@ -39,7 +40,7 @@ def demo():
 def get_file_path(relative_path: str) -> str:
     current_dir = os.getcwd()
     new_path: str = os.path.join(current_dir, relative_path)
-    
+
     return new_path
 
 
