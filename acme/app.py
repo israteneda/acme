@@ -9,22 +9,31 @@ from acme.utils import *
 
 
 def run(file):
+    completed = 0
     employees = get_employees(file)
-    for employee in employees:
-        print(f'The amount to pay {employee.name} is: {employee.salary} USD')
-    return 1
+    if employees:
+        for employee in employees:
+            print(f'The amount to pay {employee.name} is: {truncate(employee.salary, 2)} USD')
+        completed = 1
+    return completed
 
 
 def demo():
+    completed = 0
     try:
-        f = open("data.txt", "w+")
-        f.write('RENE=MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00\n'
-                'ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00')
-        f.close()
-        print(run('data.txt'))
+        dirname = os.path.dirname(os.path.realpath(__file__))
+        employess_file_path = os.path.join(dirname, "data/employees.txt")
+        base_file = open(employess_file_path, "r")
+        content = base_file.read()
+        file = open("employess.txt", "w+")
+        file.write(content)
+        base_file.close()
+        file.close()
+        completed = run('employess.txt')
     except FileNotFoundError:
         print('An error occurred in the demo execution')
-    return 1
+        completed = -1
+    return completed
 
 
 def file_path(relative_path: str) -> str:
