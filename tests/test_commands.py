@@ -23,7 +23,7 @@ class TestCommands(unittest.TestCase):
             if ''.join(test).startswith('-'):
                 self.assertEqual(data, ans)
             else:
-                ans = '\nCheck the file is in the same directory\nAlso check the correct file extension (.txt)'  + ans
+                ans = '\nCheck the file is in the same directory\nAlso check the correct file extension (.txt)\n'  + ans
                 self.assertEqual(data, ans)
 
     def test_acme_file(self):
@@ -32,7 +32,7 @@ class TestCommands(unittest.TestCase):
         with cl.redirect_stdout(out):
             processing(test)
         data = out.getvalue()
-        ans = '\nThe amount to pay RENE is: 215.0 USD\nThe amount to pay ASTRID is: 85.0 USD\nThe amount to pay ERICK is: 395.0 USD\n\n\n'
+        ans = 'The amount to pay RENE is: 215.0 USD\nThe amount to pay ASTRID is: 85.0 USD\nThe amount to pay ERICK is: 395.0 USD\n'
         self.assertEqual(data, ans)
         pass
 

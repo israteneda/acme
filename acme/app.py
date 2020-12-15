@@ -1,45 +1,57 @@
 import os
-from acme.entities import *
-from acme.utils import *
+from acme.entities.working_hours import WorkingHours
+from acme.entities.employee import Employee
+from acme.entities.shift import Shift
+from acme.entities.day import Day
 from acme.data.shiftwork import shiftwork
 from acme.data.rates import rates
-from pathlib import Path
+from acme.exceptions import *
+from acme.utils import *
 
-ONE_MINUTE = 1 / 60
 
-
-def run(param):
-    print(show_salary(param))
+def run(file):
+    employees = get_employees(file)
+    for employee in employees:
+        print(f'The amount to pay {employee.name} is: {employee.salary} USD')
     return 1
 
 
 def demo():
-    f = open("data.txt", "w+")
-    f.write('RENE=MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00\n'
-            'ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00')
-    f.close()
-    print(show_salary('data.txt'))
-
+    try:
+        f = open("data.txt", "w+")
+        f.write('RENE=MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00\n'
+                'ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00')
+        f.close()
+        print(run('data.txt'))
+    except FileNotFoundError:
+        print('An error occurred in the demo execution')
     return 1
 
 
 def file_path(relative_path: str) -> str:
-    dir: str = os.path.dirname(os.path.abspath(__file__))
-    root_dir = Path(dir).parent
+    current_dir = os.getcwd()
     split_path = relative_path.split("/")
-    new_path: str = os.path.join(root_dir, *split_path)
+    new_path: str = os.path.join(current_dir, *split_path)
     return new_path
 
 
 def read_file_lines(path: str) -> str:
-    with open(path) as file:
-        lines: str = ''
-        for line in file:
-            lines += line
+    lines: str = ''
+    try:
+        with open(path) as file:
+            for line in file:
+                lines += line
+
+    except FileNotFoundError:
+        print('File not found.\nBe sure the file exists.')
+
     return lines
 
 
 def calculate_day_cost(day: str, hours: str) -> float:
+
+    ONE_MINUTE = 1 / 60
+
     day = Day(day)
     start_time, end_time = hours.split('-')
     working_hours = WorkingHours(start_time, end_time)
@@ -51,10 +63,9 @@ def calculate_day_cost(day: str, hours: str) -> float:
         for shift in shiftwork:
             if(working_hours.start_time > 24):
                 working_hours.start_time -= 24
-            if(working_hours.end_time > 24):
-                working_hours.end_time -= 24
 
-            if truncate(working_hours.start_time, 1) >= truncate(shift.start_time, 1) and truncate(working_hours.end_time, 1) <= truncate(shift.end_time, 1):
+            if truncate(working_hours.start_time, 1) >= truncate(shift.start_time, 1) and \
+                    truncate(working_hours.end_time, 1) <= truncate(shift.end_time, 1):
                 if working_hours.start_time <= working_hours.end_time:
                     cost += working_hours.get_total() * \
                         rates[shift.name][day.get_week()]
@@ -91,16 +102,16 @@ def calculate_salary(time_worked: str) -> float:
     return salary
 
 
-def show_salary(file):
+def get_employees(file):
     path: str = file_path(file)
-    lines = read_file_lines(path).split('\n')
-    output: str = '\n'
-    for line in lines:
-        name: str = line.split('=')[0]
-        amount: float = calculate_salary(line.split('=')[1])
-        output += f'The amount to pay {name} is: {amount} USD\n'
+    file_content = read_file_lines(path)
+    employees = []
+    if file_content:
+        lines = file_content.split('\n')
+        for line in lines:
+            name: str = line.split('=')[0]
+            salary: float = calculate_salary(line.split('=')[1])
+            employee = Employee(name, salary)
+            employees.append(employee)
 
-    return output
-
-
-calculate_day_cost('MO', '20:00-21:00')
+    return employees

@@ -2,20 +2,17 @@ import unittest
 import os
 from unittest.mock import patch
 
-from acme.app import file_path, read_file_lines, calculate_salary, show_salary, calculate_day_cost
-
-# TESTDATA_FILENAME = os.path.join(os.path.dirname(__file__), 'testdata.html')
+from acme.app import file_path, read_file_lines, calculate_salary, get_employees, calculate_day_cost
 
 
 class TestApp(unittest.TestCase):
 
-    # def setUp(self):
-    #    self.testdata = open(TESTDATA_FILENAME).read()
+    def test_find_file(self):
+        current_dir = os.getcwd()
+        output: str = file_path('acme/data/data.txt')
 
-    # def test_find_file(self):
-    #     output: str = file_path('data.txt')
-
-    #     self.assertEqual('I:\\Code\\acme\\data.txt', output)
+        self.assertEqual(os.path.join(
+            current_dir, 'acme\\data\\data.txt'), output)
 
     def test_read_file_lines(self):
         path: str = file_path('acme/data/employees.txt')
@@ -26,13 +23,14 @@ class TestApp(unittest.TestCase):
             'ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00\n'
             'ERICK=MO5:00-11:00,TH8:00-17:00,SU01:00-05:00', output)
 
-    def test_name_in_the_output(self):
+    def test_names_in_the_output(self):
         path: str = file_path('acme/data/employees.txt')
-        output: str = show_salary('acme/data/employees.txt')
+        employees: str = get_employees('acme/data/employees.txt')
+        employees_names = [employee.name for employee in employees]
 
-        self.assertRegex(output, 'RENE')
-        self.assertRegex(output, 'ASTRID')
-        self.assertRegex(output, 'ERICK')
+        self.assertTrue('RENE' in employees_names)
+        self.assertTrue('ASTRID' in employees_names)
+        self.assertTrue('ERICK' in employees_names)
 
     def test_calculate_salary_amount(self):
         output: float = calculate_salary(

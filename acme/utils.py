@@ -1,26 +1,18 @@
 import math
 
-def to_seconds(time: str) -> int:
-    
-    h, m = time.split(':')
-    seconds = int(h) * 3600 + int(m) * 60
 
-    return seconds
-
-def to_hours(time: int) -> float:
+def to_hours(time: str) -> float:
+    """Pass hours from string format HH:MM to hours in decimal"""
 
     h, m = time.split(':')
     hours = int(h) + int(m) / 60
 
     return hours
 
-def hours_to_string(hours: float) -> str:
-
-    h = int(hours)
-    m = hours - h * 60
-
-    return f'{h}:{m}'
 
 def truncate(number, digits) -> float:
+    """Truncate decimal number"""
+
     stepper = 10.0 ** digits
+
     return math.trunc(stepper * number) / stepper
