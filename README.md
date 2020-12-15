@@ -2,6 +2,9 @@
 
 [![github action](https://github.com/israteneda/acme/workflows/tests/badge.svg)](https://github.com/israteneda/acme/actions)
 [![codecov](https://codecov.io/gh/israteneda/acme/branch/main/graph/badge.svg?token=VFOOKJY89R)](https://codecov.io/gh/israteneda/acme)
+[![Documentation Status](https://readthedocs.org/projects/acme-exercise/badge/?version=latest)](https://acme-exercise.readthedocs.io/en/latest/?badge=latest)
+[![PyPI version](https://badge.fury.io/py/acme-exercise.svg)](https://badge.fury.io/py/acme-exercise)
+
 
 Console app to calculate the total that the company has to pay an employee.
 
