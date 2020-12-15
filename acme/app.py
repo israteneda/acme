@@ -15,6 +15,7 @@ def run(file):
         for employee in employees:
             print(f'The amount to pay {employee.name} is: {truncate(employee.salary, 2)} USD')
         completed = 1
+
     return completed
 
 
@@ -31,13 +32,14 @@ def demo():
     except FileNotFoundError:
         print('An error occurred in the demo execution')
         completed = -1
+
     return completed
 
 
 def get_file_path(relative_path: str) -> str:
     current_dir = os.getcwd()
-    split_path = relative_path.split("/")
-    new_path: str = os.path.join(current_dir, *split_path)
+    new_path: str = os.path.join(current_dir, relative_path)
+    
     return new_path
 
 
