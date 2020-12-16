@@ -4,6 +4,7 @@ from acme.data.shiftwork import shiftwork
 from acme.data.rates import rates
 from acme.utils import *
 
+
 class Day:
     WORKWEEK = ['MO', 'TU', 'WE', 'TH', 'FR']
 
@@ -17,7 +18,7 @@ class Day:
         else:
             week = 'weekend'
         return week
-    
+
     def calculate_day_cost(self, hours: str) -> float:
 
         working_hours = WorkingHours(hours)
@@ -37,7 +38,7 @@ class Day:
                         working_hours.start_time = working_hours.end_time
                     else:
                         cost += (shift.end_time - working_hours.start_time +
-                                ONE_MINUTE) * rates[shift.name][self._week]
+                                 ONE_MINUTE) * rates[shift.name][self._week]
                         working_hours.start_time = shift.end_time + ONE_MINUTE
 
                 if truncate(working_hours.start_time, 1) >= truncate(shift.start_time, 1) and \
@@ -54,4 +55,3 @@ class Day:
                 break
 
         return cost
-

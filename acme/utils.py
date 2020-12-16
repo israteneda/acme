@@ -45,6 +45,7 @@ def get_employee_name(text_line):
 
     return employee_name
 
+
 def get_week_worked(text_line):
 
     week_worked = text_line.split('=')[1]

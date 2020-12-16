@@ -18,7 +18,7 @@ class TestCommands(unittest.TestCase):
             self.employees_file_path = 'acme/data/employees.txt'
 
     def test_processing_wrong_arguments(self):
-        
+
         tests = [
             ['-casdfdsa'],
             ['data.bin'],
@@ -26,7 +26,7 @@ class TestCommands(unittest.TestCase):
         ]
 
         for test in tests:
-            
+
             out = io.StringIO()
             with cl.redirect_stdout(out):
                 processing(test)
@@ -37,7 +37,7 @@ class TestCommands(unittest.TestCase):
 
     def test_acme_command(self):
         test = [self.employees_file_path]
-        
+
         # Get the console output
         out = io.StringIO()
         with cl.redirect_stdout(out):
@@ -60,7 +60,7 @@ class TestCommands(unittest.TestCase):
         with cl.redirect_stdout(out):
             processing(test)
         instructions = re.sub(r'[\n\t\s]', '', out.getvalue())
-        
+
         # Read instructions
         with open('tests/data/instructions.txt') as f:
             expected_instructions = re.sub(r'[\n\t\s]', '', f.read())

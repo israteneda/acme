@@ -17,7 +17,7 @@ setup(
     author_email="israteneda@gmail.com",
     url="https://github.com/israteneda/acme",
     packages=find_packages(),
-    package_data = {'acme': ['data/employees.txt']},
+    package_data={'acme': ['data/employees.txt']},
     entry_points={
         "console_scripts": [
             "acme=acme.__main__:main"

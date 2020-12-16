@@ -18,7 +18,8 @@ class TestApp(unittest.TestCase):
     def test_find_file(self):
         current_dir = os.getcwd()
         filepath: str = get_file_path(self.employees_get_file_path)
-        expected_file_path: str = os.path.join(current_dir, self.employees_get_file_path)
+        expected_file_path: str = os.path.join(
+            current_dir, self.employees_get_file_path)
 
         self.assertEqual(filepath, expected_file_path)
 
@@ -41,7 +42,8 @@ class TestApp(unittest.TestCase):
 
     def test_calculate_salary_amount(self):
         employee = Employee('ASTRID')
-        salary: float = employee.calculate_salary('MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00')
+        salary: float = employee.calculate_salary(
+            'MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00')
         self.assertEqual(salary, 215.0)
         salary: float = employee.calculate_salary(
             'MO10:00-12:00,TH12:00-14:00,SU20:00-21:00')
