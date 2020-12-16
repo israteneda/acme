@@ -6,9 +6,40 @@
 [![PyPI version](https://badge.fury.io/py/acme-exercise.svg)](https://badge.fury.io/py/acme-exercise)
 
 
-Console app to calculate the total that the company has to pay an employee.
+Hope you enjoy reviewing this console app as much as I enjoy developing
 
-You can also check the docs at: https://acme-exercise.readthedocs.io/en/latest/
+The docs are also available at [Read the Docs](https://acme-exercise.readthedocs.io/en/latest/)
+
+## Quickstart
+
+> **`Python 3.7`** or higher is required.
+
+Install ACME with `pip`:
+
+```
+python -m pip install acme-exercise
+```
+
+## Usage
+
+Run demo:
+
+```
+acme --demo
+```
+
+Run custom data:
+
+```
+acme <filename>
+```
+> Be sure the file is in the same directory where you run the command
+
+See the instructions:
+
+```
+acme --help
+```
 
 <details><summary>Problem Description</summary>
 
@@ -43,21 +74,55 @@ For example:
 
 <details><summary>Approach & Methodology</summary>
 
-First I started with the set up of the environment, creating the repository, docs, adding the readme.md and GitHub configuration.
+First I started with the set up of the environment, creating the repository, docs, adding the Readme and configuring the GitHub actions.
 
 Secondly I started thinking how structure the console app, so I search for some examples on GitHub, after that I create the app structure and architecture using C4 Model.
 
 To start with the functional side I decided to develop a minimum viable implementation to refactor later. I implemented the basic functionality with the provided use cases.
 
-After developed the solution I deploy the console app to PyPI to easily use for the end user.
+Later I improve the basic functionality to allow working hours in multiple work shifts, finally I validated the format of the input file.
 
-For the app development I used <a href="https://en.wikipedia.org/wiki/Kanban_(development)" target="_blank">Kanban Method</a> and <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="_blank">Pomodoro Technique</a>. 
+After developed the solution, I deploy the console app to PyPI to easily use for the end user.
+
+For the app development I used <a href="https://en.wikipedia.org/wiki/Kanban_(development)" target="_blank">Kanban Method</a> with [GitHub Projects](https://github.com/israteneda/acme/projects/1)
+
+![ACME Kanban](https://i.imgur.com/BhrPdOL.png)
+
+
+Finally for time managment I used <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="_blank">Pomodoro Technique</a>. 
 
 </details>
 
 <details><summary>Install & Run</summary>
 
-For run the test execute:
+You can follow the [Quickstart](#quickstart) guide or instead follow the next steps to run and test manually:
+
+Clone the project:
+
+```
+git clone https://github.com/israteneda/acme
+```
+
+Change directory to the app directory:
+
+```
+cd acme
+```
+
+Run demo:
+
+```
+python acme\__main__.py --demo
+```
+
+Run custom data:
+
+```
+python acme\__main__.py <filename>
+```
+> Be sure the file is in the same directory where you run the command
+
+Run test:
 
 ```
 python -m unittest -v

@@ -63,9 +63,9 @@ def instructions():
 
     options = """
     Options:
-        -d  : Create a demo file with default name (data.txt) 
-              and execute the app (also --demo)
-        -h  : Print the instructions (also --help)"""
+        -d, --demo  : Create a demo file with default name (employees.txt) 
+                      and execute the app
+        -h, --help  : Print the instructions"""
 
     examples = """
     Examples:

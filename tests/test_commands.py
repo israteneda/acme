@@ -65,6 +65,9 @@ class TestCommands(unittest.TestCase):
         with open('tests/data/instructions.txt') as f:
             instructions = re.sub(r'[\n\t\s]', '', f.read())
 
+        # Allow long text
+        self.maxDiff = None
+
         self.assertEqual(output, instructions)
 
     def test_acme_demo_command(self):
