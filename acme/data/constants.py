@@ -5,4 +5,4 @@ FAIL = 0
 ERROR = -1
 
 FILE_NOT_FOUND = 'File not found.\nBe sure the file exists.'
-MALFORMAT_FILE = 'File is malformed, please check the file'
+MALFORMED_FILE = 'File is malformed, please check the file'
