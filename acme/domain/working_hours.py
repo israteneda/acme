@@ -1,5 +1,6 @@
 from acme.utils import *
 
+
 class WorkingHours:
 
     MAX_HOUR = 24
