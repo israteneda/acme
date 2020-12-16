@@ -1,7 +1,9 @@
 import os
 import sys
 import unittest
-from acme.app import get_file_path, read_file_lines, calculate_salary, get_employees, calculate_day_cost
+from acme.app import *
+from acme.entities.employee import Employee
+from acme.entities.day import Day
 
 
 class TestApp(unittest.TestCase):
@@ -38,22 +40,22 @@ class TestApp(unittest.TestCase):
         self.assertTrue('WLADYMIR' in employees_names)
 
     def test_calculate_salary_amount(self):
-        salary: float = calculate_salary(
-            'MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00')
+        employee = Employee('ASTRID')
+        salary: float = employee.calculate_salary('MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00')
         self.assertEqual(salary, 215.0)
-        salary: float = calculate_salary(
+        salary: float = employee.calculate_salary(
             'MO10:00-12:00,TH12:00-14:00,SU20:00-21:00')
         self.assertEqual(salary, 85.0)
-        salary: float = calculate_salary(
+        salary: float = employee.calculate_salary(
             'MO5:00-11:00,TH8:00-17:00,SU01:00-05:00')
         self.assertEqual(salary, 395.0)
 
     def test_calculate_day_cost(self):
-        day_cost: float = calculate_day_cost('MO', '10:00-12:00')
+        day_cost: float = Day.calculate_day_cost('MO', '10:00-12:00')
         self.assertEqual(day_cost, 30.0)
-        day_cost: float = calculate_day_cost('SU', '20:00-21:00')
+        day_cost: float = Day.calculate_day_cost('SU', '20:00-21:00')
         self.assertEqual(day_cost, 25.0)
-        day_cost: float = calculate_day_cost('TU', '8:00-17:00')
+        day_cost: float = Day.calculate_day_cost('TU', '8:00-17:00')
         self.assertEqual(day_cost, 145.0)
 
 

@@ -1,13 +1,13 @@
 from acme.utils import *
-
+from acme.files import *
 
 class WorkingHours:
 
     MAX_HOUR = 24
 
-    def __init__(self, start_time: str, end_time: str):
-        self.start_time = start_time
-        self.end_time = self._check_max_hour(end_time)
+    def __init__(self, hours: str):
+        self.start_time, self.end_time = get_times(hours)
+        self.end_time = self._check_max_hour(self.end_time)
         self._to_hours()
 
     def _check_max_hour(self, end_time: str) -> str:

@@ -1,8 +1,5 @@
 from acme.app import run, demo
-
-SUCCESS = 1
-FAIL = 0
-ERROR = -1
+from acme.data.constants import *
 
 
 def check(argv):
