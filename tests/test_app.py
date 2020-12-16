@@ -51,11 +51,14 @@ class TestApp(unittest.TestCase):
         self.assertEqual(salary, 395.0)
 
     def test_calculate_day_cost(self):
-        day_cost: float = Day.calculate_day_cost('MO', '10:00-12:00')
+        day = Day('MO')
+        day_cost: float = day.calculate_day_cost('10:00-12:00')
         self.assertEqual(day_cost, 30.0)
-        day_cost: float = Day.calculate_day_cost('SU', '20:00-21:00')
+        day = Day('SU')
+        day_cost: float = day.calculate_day_cost('20:00-21:00')
         self.assertEqual(day_cost, 25.0)
-        day_cost: float = Day.calculate_day_cost('TU', '8:00-17:00')
+        day = Day('TU')
+        day_cost: float = day.calculate_day_cost('8:00-17:00')
         self.assertEqual(day_cost, 145.0)
 
 

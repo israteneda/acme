@@ -23,10 +23,6 @@ class Day:
         working_hours = WorkingHours(hours)
         cost: float = 0
         total_hours: float = working_hours.get_total()
-        # week = self._week
-        print(self._week)
-        print(self.day_abbrev)
-        # print(week)
 
         while True:
             for shift in shiftwork:
@@ -37,18 +33,18 @@ class Day:
                         truncate(working_hours.end_time, 1) <= truncate(shift.end_time, 1):
                     if working_hours.start_time <= working_hours.end_time:
                         cost += working_hours.get_total() * \
-                            rates[shift.name]['workweek']
+                            rates[shift.name][self._week]
                         working_hours.start_time = working_hours.end_time
                     else:
                         cost += (shift.end_time - working_hours.start_time +
-                                ONE_MINUTE) * rates[shift.name]['workweek']
+                                ONE_MINUTE) * rates[shift.name][self._week]
                         working_hours.start_time = shift.end_time + ONE_MINUTE
 
                 if truncate(working_hours.start_time, 1) >= truncate(shift.start_time, 1) and \
                         truncate(working_hours.start_time, 1) <= truncate(shift.end_time, 1) and \
                         truncate(working_hours.end_time, 1) > truncate(shift.end_time, 1):
                     cost += (shift.end_time - working_hours.start_time) * \
-                        rates[shift.name]['workweek']
+                        rates[shift.name][self._week]
                     working_hours.start_time = shift.end_time
 
                 if working_hours.get_total() == 0:

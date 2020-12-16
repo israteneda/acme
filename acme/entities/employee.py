@@ -15,4 +15,7 @@ class Employee:
             day_abbrev = get_day_abbrev(day)
             day = Day(day_abbrev)
             salary += day.calculate_day_cost(hours)
+        
         self.salary = salary
+
+        return salary
