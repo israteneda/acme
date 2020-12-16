@@ -31,7 +31,7 @@ def demo():
                 file.write(content)
         completed = run('employess.txt')
     except FileNotFoundError:
-        print('An error occurred in the demo execution')
+        print('Problems running demo')
         completed = -1
 
     return completed
