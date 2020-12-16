@@ -1,3 +1,9 @@
 site_name: ACME
 theme:
   name: material
+nav:
+    - Quickstart: 'index.md'
+    - Problem Description: 'problem.md'
+    - Architecture: 'architecture.md'
+    - Approach & Methodology: 'approach_methodology.md'
+    - Install & Run: 'install_run.md'
