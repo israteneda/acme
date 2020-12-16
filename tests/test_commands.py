@@ -42,15 +42,15 @@ class TestCommands(unittest.TestCase):
         out = io.StringIO()
         with cl.redirect_stdout(out):
             processing(test)
-        data = out.getvalue()
+        content = out.getvalue()
 
         # Read sample salaries
         file_path = os.path.dirname(os.path.realpath(__file__))
         path: str = os.path.join(file_path, self.salary_file_path)
         with open(path) as file:
-            content = file.read()
+            expected_content = file.read()
 
-        self.assertEqual(data, content)
+        self.assertEqual(content, expected_content)
 
     def test_acme_instructions(self):
         test = ['--help']
@@ -59,16 +59,16 @@ class TestCommands(unittest.TestCase):
         out = io.StringIO()
         with cl.redirect_stdout(out):
             processing(test)
-        output = re.sub(r'[\n\t\s]', '', out.getvalue())
+        instructions = re.sub(r'[\n\t\s]', '', out.getvalue())
         
         # Read instructions
         with open('tests/data/instructions.txt') as f:
-            instructions = re.sub(r'[\n\t\s]', '', f.read())
+            expected_instructions = re.sub(r'[\n\t\s]', '', f.read())
 
         # Allow long text
         self.maxDiff = None
 
-        self.assertEqual(output, instructions)
+        self.assertEqual(instructions, expected_instructions)
 
     def test_acme_demo_command(self):
         test = ['--demo']
@@ -77,12 +77,12 @@ class TestCommands(unittest.TestCase):
         out = io.StringIO()
         with cl.redirect_stdout(out):
             processing(test)
-        output = out.getvalue()
+        demo_content = out.getvalue()
 
         # Read sample employees data
         file_path = os.path.dirname(os.path.realpath(__file__))
         path: str = os.path.join(file_path, self.salary_file_path)
         with open(path) as file:
-            content = file.read()
+            expected_content = file.read()
 
-        self.assertEqual(content, output)
+        self.assertEqual(demo_content, expected_content)

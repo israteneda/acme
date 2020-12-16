@@ -1,5 +1,3 @@
-You can follow the [Quickstart](index.md) guide or instead follow the next steps to run and test manually:
-
 Clone the project:
 
 ```

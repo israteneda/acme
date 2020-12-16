@@ -59,13 +59,15 @@ def instructions():
     Usage:
         acme <file>
         
-        Ensure the file is a text (.txt) file"""
+        Ensure the file is a text (.txt) file.
+        In addition, that the file is in the same
+        directory where the command is executed."""
 
     options = """
     Options:
-        -d, --demo  : Create a demo file with default name (employees.txt) 
-                      and execute the app
-        -h, --help  : Print the instructions"""
+        -d, --demo  : Create a demo file (employees.txt) 
+                      and execute acme employees.txt.
+        -h, --help  : Print the instructions."""
 
     examples = """
     Examples:
