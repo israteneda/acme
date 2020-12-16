@@ -1,5 +1,5 @@
 from acme.data.constants import *
-from acme.entities.working_hours import WorkingHours
+from acme.domain.working_hours import WorkingHours
 from acme.data.shiftwork import shiftwork
 from acme.data.rates import rates
 from acme.utils import *

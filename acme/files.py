@@ -1,7 +1,7 @@
 import os
 from acme.data.constants import *
 from acme.utils import *
-from acme.entities.employee import Employee
+from acme.domain.employee import Employee
 
 
 def get_file_path(relative_path: str) -> str:
@@ -24,7 +24,7 @@ def read_file_lines(path: str) -> str:
     return lines
 
 
-def get_employees(file):
+def get_employees_from_file(file):
     path: str = get_file_path(file)
     file_content = read_file_lines(path)
     employees = []
@@ -38,3 +38,15 @@ def get_employees(file):
             employees.append(employee)
 
     return employees
+
+def write_employees_data():
+    try:
+        dirname = os.path.dirname(os.path.realpath(__file__))
+        employess_file_path = os.path.join(dirname, "data/employees.txt")
+        with open(employess_file_path, "r") as base_file:
+            content = base_file.read()
+            with open("employess.txt", "w+") as file:
+                file.write(content)
+    except FileNotFoundError:
+        print('Demo data not found')
+        completed = -1

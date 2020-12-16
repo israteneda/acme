@@ -1,4 +1,4 @@
-from acme.entities.shift import Shift
+from acme.domain.shift import Shift
 
 # Working during the day
 first_shift = Shift(name='first_shift', hours='09:01-18:00')

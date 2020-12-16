@@ -1,22 +1,5 @@
-from acme.app import run, demo
 from acme.data.constants import *
-
-
-def check(argv):
-    """Check if some command is completed"""
-
-    completed = 0
-
-    if len(argv) == 1:
-        if argv[0] == '-h' or argv[0] == '--help':
-            instructions()
-            completed = SUCCESS
-        elif argv[0] == '-d' or argv[0] == '--demo':
-            completed = demo()
-        else:
-            completed = run(argv[0])
-
-    return completed
+from acme.files import *
 
 
 def processing(argv):
@@ -37,6 +20,43 @@ def processing(argv):
 
     if completed != SUCCESS:
         print(err.get(completed))
+
+
+def check(argv):
+    """Check if some command is completed"""
+
+    completed = 0
+
+    if len(argv) == 1:
+        if argv[0] == '-h' or argv[0] == '--help':
+            instructions()
+            completed = SUCCESS
+        elif argv[0] == '-d' or argv[0] == '--demo':
+            completed = demo()
+        else:
+            completed = run(argv[0])
+
+    return completed
+
+
+def run(file):
+    completed = 0
+    employees = get_employees_from_file(file)
+    if employees:
+        for employee in employees:
+            print(
+                f'The amount to pay {employee.name} is: {truncate(employee.salary, 2)} USD')
+        completed = 1
+
+    return completed
+
+
+def demo():
+    completed = 0
+    write_employees_data()
+    completed = run('employess.txt')
+
+    return completed
 
 
 def instructions():

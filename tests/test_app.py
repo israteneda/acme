@@ -1,9 +1,9 @@
 import os
 import sys
 import unittest
-from acme.app import *
-from acme.entities.employee import Employee
-from acme.entities.day import Day
+from acme.domain.employee import Employee
+from acme.domain.day import Day
+from acme.files import *
 
 
 class TestApp(unittest.TestCase):
@@ -33,7 +33,7 @@ class TestApp(unittest.TestCase):
 
     def test_names_in_the_output(self):
         path: str = get_file_path(self.employees_get_file_path)
-        employees: str = get_employees(self.employees_get_file_path)
+        employees: str = get_employees_from_file(self.employees_get_file_path)
         employees_names = [employee.name for employee in employees]
 
         self.assertTrue('RENE' in employees_names)

@@ -1,5 +1,5 @@
 from acme.utils import *
-from acme.entities.day import Day
+from acme.domain.day import Day
 
 
 class Employee:

@@ -1,4 +1,4 @@
-from acme.entities.working_hours import WorkingHours
+from acme.domain.working_hours import WorkingHours
 
 
 class Shift(WorkingHours):
