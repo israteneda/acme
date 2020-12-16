@@ -28,7 +28,7 @@ setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License"
     ],
-    python_requires=">=3.8",
+    python_requires=">=3.7",
     project_urls={
         "Homepage": "https://github.com/israteneda/acme",
         "Source Code": "https://github.com/israteneda/acme",
