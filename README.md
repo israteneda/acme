@@ -100,7 +100,7 @@ Finally for time managment I used <a href="https://en.wikipedia.org/wiki/Pomodor
 
 </details>
 
-<details><summary>Install & Run</summary>
+<details><summary>Install Manually</summary>
 
 You can follow the [Quickstart](#quickstart) guide or instead follow the next steps to run and test manually:
 

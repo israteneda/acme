@@ -2,6 +2,8 @@
 
 Console app to calculate the total that the company has to pay an employee.
 
+## Installation
+
 > **`Python 3.7`** or higher is required.
 
 Install ACME with `pip`:

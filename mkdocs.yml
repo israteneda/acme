@@ -6,4 +6,4 @@ nav:
     - Problem Description: 'problem.md'
     - Architecture: 'architecture.md'
     - Approach & Methodology: 'approach_methodology.md'
-    - Install & Run: 'install_run.md'
+    - Install Manually: 'install_manually.md'
