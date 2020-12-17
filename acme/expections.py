@@ -6,7 +6,7 @@ from acme import utils
 
 class MalformedFileError(Exception):
 
-    def __init__(self, message):
+    def __init__(self, message=''):
         self.message = message
         logging.error(self.message)
         logging.error(MALFORMED_FILE)

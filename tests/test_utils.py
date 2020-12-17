@@ -5,7 +5,14 @@ from acme import utils
 class TestUtils(unittest.TestCase):
 
     def test_get_hours_and_minutes(self):
+
         start_time, end_time = utils.get_hours_minutes('10:00-12:00')
+
+    def test_get_hours_and_minutes_exception(self):
+        with self.assertRaises(SystemExit) as cm:
+            start_time, end_time = utils.get_hours_minutes('10:0012:00')
+
+        self.assertEqual(cm.exception.code, 1)
 
     def test_get_day_times(self):
 
@@ -20,6 +27,13 @@ class TestUtils(unittest.TestCase):
         day = utils.get_day_abbrev('MO05:00-07:00')
 
         self.assertEqual(day, expected_day_abbrev)
+
+    def test_get_day_abbrev_exception(self):
+
+        with self.assertRaises(SystemExit) as cm:
+            day = utils.get_day_abbrev('05:00-07:00')
+
+        self.assertEqual(cm.exception.code, 1)
 
     def test_get_employee_name(self):
 
@@ -36,6 +50,12 @@ class TestUtils(unittest.TestCase):
             'ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00')
 
         self.assertEqual(week_worked, expected_week)
+    
+    def test_get_week_worked_exception(self):
+        with self.assertRaises(SystemExit) as cm:
+            start_time, end_time = utils.get_hours_minutes('ASTRID')
+
+        self.assertEqual(cm.exception.code, 1)
 
     def test_to_decimal_hours(self):
 
@@ -43,6 +63,13 @@ class TestUtils(unittest.TestCase):
         decimal_hours = utils.to_decimal_hours('10:00')
 
         self.assertEqual(decimal_hours, expected_decimal)
+
+    def test_to_decimal_hours_exception(self):
+
+        with self.assertRaises(SystemExit) as cm:
+            start_time, end_time = utils.to_decimal_hours('00')
+
+        self.assertEqual(cm.exception.code, 1)
 
     def test_hours_to_string(self):
 

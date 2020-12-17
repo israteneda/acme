@@ -10,7 +10,7 @@ def get_employees_from_file(file):
     text_lines = read_file_lines(path)
     for text_line in text_lines:
         employee_name: str = get_employee_name(text_line)
-        week_worked = get_week_worked(text_line)
+        week_worked: str = get_week_worked(text_line)
         employee = Employee(employee_name)
         employee.calculate_salary(week_worked)
         employees.append(employee)

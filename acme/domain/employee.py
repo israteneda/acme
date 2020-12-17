@@ -13,8 +13,7 @@ class Employee:
         salary: float = 0.0
         datetimes = week_worked.split(',')
         if '' in datetimes:
-            print('employee')
-            raise MalformedFileError
+            raise MalformedFileError('Error obtaining datetimes')
         else:
             for datetime in datetimes:
                 day_times = utils.get_day_times(datetime)

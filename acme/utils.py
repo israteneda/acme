@@ -3,47 +3,31 @@ import logging
 from typing import List
 from acme.data import constants
 from acme.expections import MalformedFileError
+from acme.data.constants import WEEKEND, WORKWEEK
 
 
 def get_day_abbrev(day):
 
-    try:
-        day_abbrev = day[:2]
-    except:
-        raise MalformedFileError('Error obtaining day name')
+    day_abbrev = day[:2]
+
+    if day_abbrev not in WORKWEEK:
+        if day_abbrev not in WEEKEND:
+            raise MalformedFileError('Error obtaining day name')
 
     return day_abbrev
 
-
-def get_day_times(day_worked):
-
-    try:
-        times_worked = day_worked[2:]
-    except:
-        raise MalformedFileError('Error obtaining day times')
-
-    return times_worked
-
-
 def get_employee_name(text_line):
 
-    try:
-        employee_name = text_line.split('=')[0]
-    except:
-        raise MalformedFileError('Error obtaining employee name')
+    employee_name = text_line.split('=')[0]
 
     return employee_name
 
 
-def get_week_worked(text_line):
+def get_day_times(day_worked):
 
-    try:
-        week_worked = text_line.split('=')[1]
-    except:
-        raise MalformedFileError('Error obtaining week worked')
+    times_worked = day_worked[2:]
 
-    return week_worked
-
+    return times_worked
 
 def get_hours_minutes(hours):
 
@@ -55,15 +39,25 @@ def get_hours_minutes(hours):
     return start_time, end_time
 
 
+def get_week_worked(text_line):
+
+    try:
+        week_worked = text_line.split('=')[1]
+    except IndexError:
+        raise MalformedFileError('Error obtaining week worked')
+
+    return week_worked
+
+
 def to_decimal_hours(time: str) -> float:
     """Pass hours from string format HH:MM to hours decimal"""
 
     try:
         h, m = time.split(':')
         hours = int(h) + int(m) / 60
-    except:
-        logging.error(constants.MALFORMED_FILE)
-        sys.exit(1)
+    except ValueError:
+        print(time)
+        raise MalformedFileError('Error parsing hours')
 
     return hours
 
