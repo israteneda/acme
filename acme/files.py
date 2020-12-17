@@ -44,13 +44,9 @@ def read_file_lines(path: str) -> str:
 
 
 def write_employees_data():
-    try:
-        dirname = os.path.dirname(os.path.realpath(__file__))
-        employess_file_path = os.path.join(dirname, "data/employees.txt")
-        with open(employess_file_path, "r") as base_file:
-            content = base_file.read()
-            with open("employess.txt", "w+") as file:
-                file.write(content)
-    except FileNotFoundError:
-        print('Demo data not found')
-        completed = -1
+    dirname = os.path.dirname(os.path.realpath(__file__))
+    employess_file_path = os.path.join(dirname, "data/employees.txt")
+    with open(employess_file_path, "r") as base_file:
+        content = base_file.read()
+        with open("employess.txt", "w+") as file:
+            file.write(content)

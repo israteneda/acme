@@ -1,4 +1,4 @@
-from acme.data.constants import SUCCESS, FAIL, ERROR
+from acme.data.constants import SUCCESS, FAIL
 from acme.files import get_employees_from_file, write_employees_data
 
 
@@ -14,8 +14,7 @@ def processing(argv):
         completed = check(argv)
 
     err = {
-        FAIL:  'Invalid argument.\nFor more information run: acme --help',
-        ERROR: 'An error ocurred',
+        FAIL:  'Invalid argument.\nFor more information run: acme --help'
     }
 
     if completed != SUCCESS:
