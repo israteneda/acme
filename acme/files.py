@@ -48,5 +48,5 @@ def write_employees_data():
     employess_file_path = os.path.join(dirname, "data/employees.txt")
     with open(employess_file_path, "r") as base_file:
         content = base_file.read()
-        with open("employess.txt", "w+") as file:
+        with open("employees.txt", "w+") as file:
             file.write(content)

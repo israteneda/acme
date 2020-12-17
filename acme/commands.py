@@ -54,7 +54,7 @@ def run(file):
 def demo():
     completed = 0
     write_employees_data()
-    completed = run('employess.txt')
+    completed = run('employees.txt')
 
     return completed
 
