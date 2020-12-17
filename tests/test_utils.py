@@ -50,10 +50,10 @@ class TestUtils(unittest.TestCase):
             'ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00')
 
         self.assertEqual(week_worked, expected_week)
-    
+
     def test_get_week_worked_exception(self):
         with self.assertRaises(SystemExit) as cm:
-            start_time, end_time = utils.get_hours_minutes('ASTRID')
+            start_time, end_time = utils.get_week_worked('ASTRID')
 
         self.assertEqual(cm.exception.code, 1)
 

@@ -1,7 +1,8 @@
 import os
-from acme.data.constants import FILE_NOT_FOUND
+from acme.data.constants import FILE_NOT_FOUND, EMPTY_FILE
 from acme.utils import get_employee_name, get_week_worked
 from acme.domain.employee import Employee
+from acme.expections import EmptyFileError
 
 
 def get_employees_from_file(file):
@@ -26,12 +27,18 @@ def get_file_path(relative_path: str) -> str:
 
 
 def read_file_lines(path: str) -> str:
+
+    lines = []
+
     try:
         with open(path) as file:
             lines = file.readlines()
 
     except FileNotFoundError:
         print(FILE_NOT_FOUND)
+
+    if not lines:
+        raise EmptyFileError()
 
     return lines
 

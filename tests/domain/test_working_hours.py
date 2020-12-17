@@ -13,3 +13,19 @@ class TestWorkingHours(unittest.TestCase):
         is_between = self.working_hours.start_time_is_between(self.shift)
 
         self.assertTrue(is_between)
+
+    def test_check_hours_exception(self):
+        with self.assertRaises(SystemExit) as cm:
+            wrong_working_hours = WorkingHours('00:00-03:00')
+
+        self.assertEqual(cm.exception.code, 1)
+
+        with self.assertRaises(SystemExit) as cm:
+            wrong_working_hours = WorkingHours('25:00-40:00')
+
+        self.assertEqual(cm.exception.code, 1)
+
+        with self.assertRaises(SystemExit) as cm:
+            wrong_working_hours = WorkingHours('04:00-03:00')
+
+        self.assertEqual(cm.exception.code, 1)

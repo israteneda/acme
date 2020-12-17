@@ -16,6 +16,7 @@ def get_day_abbrev(day):
 
     return day_abbrev
 
+
 def get_employee_name(text_line):
 
     employee_name = text_line.split('=')[0]
@@ -28,6 +29,7 @@ def get_day_times(day_worked):
     times_worked = day_worked[2:]
 
     return times_worked
+
 
 def get_hours_minutes(hours):
 
