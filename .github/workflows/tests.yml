@@ -43,6 +43,3 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }}
         flags: unittests
         verbose: true
-    - name: Test with pytest
-      run: |
-        pytest
