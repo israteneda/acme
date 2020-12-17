@@ -1,28 +1,44 @@
 from acme.utils import *
+from acme.data.constants import *
 
 
 class WorkingHours:
 
-    MAX_HOUR = 24
-
     def __init__(self, hours: str):
         self.start_time, self.end_time = get_times(hours)
-        self.end_time = self._check_max_hour(self.end_time)
         self._to_hours()
 
-    def _check_max_hour(self, end_time: str) -> str:
-        if end_time == '00:00':
-            end_time = '24:00'
-
-        return end_time
-
     def _to_hours(self):
-        self.start_time = to_hours(self.start_time)
-        self.end_time = to_hours(self.end_time)
+        self.start_time = to_decimal_hours(self.start_time)
+        self.end_time = to_decimal_hours(self.end_time)
+        self._check_hours()
+
+    def _check_hours(self):
+        if self.start_time == 0:
+            wrong_time_range(self.start_time, self.end_time)
+
+        if self.end_time == 0:
+            self.end_time = 24.0
+
+        if self.start_time > MAX_HOUR or self.end_time > MAX_HOUR:
+            wrong_time_range(self.start_time, self.end_time)
+
+        if self.start_time > self.end_time:
+            if self.end_time > MIN_HOUR:
+                wrong_time_range(self.start_time, self.end_time)
+
+    def start_time_is_between(self, shift):
+        ans = False
+
+        if self.start_time >= shift.start_time:
+            if self.start_time <= shift.end_time:
+                ans = True
+        
+        return ans
 
     def get_total(self) -> float:
         if self.end_time < self.start_time:
-            total_hours = self.MAX_HOUR - self.start_time + self.end_time
+            total_hours = MAX_HOUR - self.start_time + self.end_time
         else:
             total_hours = self.end_time - self.start_time
 

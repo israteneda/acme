@@ -44,8 +44,9 @@ def run(file):
     employees = get_employees_from_file(file)
     if employees:
         for employee in employees:
-            print(
-                f'The amount to pay {employee.name} is: {truncate(employee.salary, 2)} USD')
+            print('The amount to pay {} is: {:.2f} USD'.format(
+                employee.name, employee.salary)
+            )
         completed = 1
 
     return completed

@@ -1,7 +1,7 @@
 import sys
 import math
 from typing import List
-from acme.data.constants import *
+from acme.data.constants import SUCCESS, MALFORMED_FILE, FAIL
 
 
 def get_times(hours):
@@ -80,7 +80,7 @@ def get_week_worked(text_line):
     return week_worked
 
 
-def to_hours(time: str) -> float:
+def to_decimal_hours(time: str) -> float:
     """Pass hours from string format HH:MM to hours in decimal"""
 
     try:
@@ -92,10 +92,24 @@ def to_hours(time: str) -> float:
 
     return hours
 
+def hours_to_string(hours: float) -> str:
 
-def truncate(number, digits) -> float:
-    """Truncate decimal number"""
+    h = int(hours)
+    m = int((hours - h) * 60)
 
-    stepper = 10.0 ** digits
+    h = str(h)
+    m = str(m)
 
-    return math.trunc(stepper * number) / stepper
+    if h == '0':
+        h += '0'
+    
+    if m == '0':
+        m += '0'
+
+    return f'{h}:{m}' 
+            
+def wrong_time_range(start_time, end_time):
+    first_time = hours_to_string(start_time)
+    second_time = hours_to_string(end_time)
+    print(f'{WRONG_RANGE}: {first_time}-{second_time}')
+    sys.exit()
