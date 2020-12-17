@@ -11,8 +11,7 @@ def get_day_abbrev(day):
     try:
         day_abbrev = day[:2]
     except:
-        print('day_abbrev')
-        raise MalformedFileError
+        raise MalformedFileError('Error obtaining day name')
 
     return day_abbrev
 
@@ -21,8 +20,7 @@ def get_datetimes(day):
     try:
         day = day[2:]
     except:
-        print('datetimes')
-        raise MalformedFileError
+        raise MalformedFileError('Error obtaining datetimes')
 
     return day
 
@@ -32,8 +30,7 @@ def get_employee_name(text_line):
     try:
         employee_name = text_line.split('=')[0]
     except:
-        print('employee name')
-        raise MalformedFileError
+        raise MalformedFileError('Error obtaining employee name')
 
     return employee_name
 
@@ -52,8 +49,7 @@ def get_times(hours):
     try:
         start_time, end_time = hours.split('-')
     except ValueError as e:
-        print('times')
-        raise MalformedFileError
+        raise MalformedFileError('Error obtaining day times')
 
     return start_time, end_time
 
