@@ -11,16 +11,16 @@ class Employee:
 
     def calculate_salary(self, week_worked: str) -> float:
         salary: float = 0.0
-        datatimes = week_worked.split(',')
-        if '' in datatimes:
+        datetimes = week_worked.split(',')
+        if '' in datetimes:
             print('employee')
             raise MalformedFileError
         else:
-            for datatime in datatimes:
-                datatimes = utils.get_datetimes(datatime)
-                day_abbrev = utils.get_day_abbrev(datatime)
+            for datetime in datetimes:
+                day_times = utils.get_day_times(datetime)
+                day_abbrev = utils.get_day_abbrev(datetime)
                 day = Day(day_abbrev)
-                salary += day.calculate_day_cost(datatimes)
+                salary += day.calculate_day_cost(day_times)
 
         self.salary = salary
 

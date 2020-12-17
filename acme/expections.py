@@ -3,6 +3,7 @@ import logging
 from acme.data.constants import MALFORMED_FILE, WRONG_TIME_RANGE
 from acme import utils
 
+
 class MalformedFileError(Exception):
 
     def __init__(self, message):
@@ -10,7 +11,8 @@ class MalformedFileError(Exception):
         logging.error(self.message)
         logging.error(MALFORMED_FILE)
         exit(1)
-    
+
+
 class WrongTimeRangeError(Exception):
 
     def __init__(self, start_time, end_time):

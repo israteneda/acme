@@ -4,7 +4,6 @@ from acme.expections import MalformedFileError, WrongTimeRangeError
 
 class TestExceptions(unittest.TestCase):
 
-
     def test_malformed_file_error(self):
         with self.assertRaises(SystemExit) as cm:
             raise MalformedFileError('Error obtaining name')

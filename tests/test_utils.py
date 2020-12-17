@@ -7,10 +7,10 @@ class TestUtils(unittest.TestCase):
     def test_get_hours_and_minutes(self):
         start_time, end_time = utils.get_hours_minutes('10:00-12:00')
 
-    def test_get_datetimes(self):
+    def test_get_day_times(self):
 
         expected_hours = '05:00-07:00'
-        hours = utils.get_datetimes('MO05:00-07:00')
+        hours = utils.get_day_times('MO05:00-07:00')
 
         self.assertEqual(hours, expected_hours)
 
@@ -50,7 +50,7 @@ class TestUtils(unittest.TestCase):
         hours = utils.hours_to_string(20.0)
 
         self.assertEqual(hours, expected_hours)
-        
+
         expected_hours = '00:00'
         hours = utils.hours_to_string(0)
 

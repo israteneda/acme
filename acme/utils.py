@@ -14,14 +14,15 @@ def get_day_abbrev(day):
 
     return day_abbrev
 
-def get_datetimes(day):
+
+def get_day_times(day_worked):
 
     try:
-        day = day[2:]
+        times_worked = day_worked[2:]
     except:
-        raise MalformedFileError('Error obtaining datetimes')
+        raise MalformedFileError('Error obtaining day times')
 
-    return day
+    return times_worked
 
 
 def get_employee_name(text_line):
@@ -39,18 +40,20 @@ def get_week_worked(text_line):
     try:
         week_worked = text_line.split('=')[1]
     except:
-        raise MalformedFileError('Error obtaining employee name')
+        raise MalformedFileError('Error obtaining week worked')
 
     return week_worked
 
+
 def get_hours_minutes(hours):
-    
+
     try:
         start_time, end_time = hours.split('-')
     except ValueError as e:
         raise MalformedFileError('Error obtaining hours and minutes times')
 
     return start_time, end_time
+
 
 def to_decimal_hours(time: str) -> float:
     """Pass hours from string format HH:MM to hours decimal"""
