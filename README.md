@@ -6,9 +6,9 @@
 [![PyPI version](https://badge.fury.io/py/acme-exercise.svg)](https://badge.fury.io/py/acme-exercise)
 
 
-Hope you enjoy reviewing this console app as much as I enjoy developing
+I hope you enjoy reviewing this console application as much as I enjoyed developing.
 
-The docs are also available at [Read the Docs](https://acme-exercise.readthedocs.io/en/latest/)
+Documentation is also available on [Read the Docs](https://acme-exercise.readthedocs.io/en/latest/)
 
 ## Quickstart
 
