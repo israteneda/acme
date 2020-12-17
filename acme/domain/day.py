@@ -25,7 +25,7 @@ class Day:
         worked_hours: float = 0
         plus_one = False
 
-        for index, shift in enumerate(shiftwork):
+        for shift in shiftwork:
 
             rate = rates[shift.name][self._week]
 

@@ -33,6 +33,6 @@ class TestFiles(unittest.TestCase):
         path: str = get_file_path(self.employees_get_file_path)
         file_lines: str = read_file_lines(path)
         with open(path) as file:
-            expected_content = file.read()
+            expected_content = file.readlines()
 
         self.assertEqual(file_lines, expected_content)

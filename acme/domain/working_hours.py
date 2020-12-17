@@ -1,5 +1,6 @@
 from acme.utils import to_decimal_hours, get_times
 from acme.data.constants import MAX_HOUR, MIN_HOUR
+from acme.expections import WRONG_TIME_RANGE
 
 
 class WorkingHours:
@@ -15,17 +16,17 @@ class WorkingHours:
 
     def _check_hours(self):
         if self.start_time == 0:
-            wrong_time_range(self.start_time, self.end_time)
+            raise WRONG_TIME_RANGE(self.start_time, self.end_time)
 
         if self.end_time == 0:
             self.end_time = 24.0
 
         if self.start_time > MAX_HOUR or self.end_time > MAX_HOUR:
-            wrong_time_range(self.start_time, self.end_time)
+            raise WRONG_TIME_RANGE(self.start_time, self.end_time)
 
         if self.start_time > self.end_time:
             if self.end_time > MIN_HOUR:
-                wrong_time_range(self.start_time, self.end_time)
+                raise WRONG_TIME_RANGE(self.start_time, self.end_time)
 
     def start_time_is_between(self, shift):
         ans = False

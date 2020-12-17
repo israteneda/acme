@@ -3,38 +3,7 @@ import math
 import logging
 from typing import List
 from acme.data import constants
-
-
-def get_times(hours):
-    try:
-        start_time, end_time = hours.split('-')
-    except:
-        logging.error(constants.MALFORMED_FILE)
-        sys.exit(1)
-
-    return start_time, end_time
-
-
-def get_datatimes(time_worked: str) -> List[str]:
-
-    try:
-        days = time_worked.split(',')
-    except:
-        logging.error(constants.MALFORMED_FILE)
-        sys.exit(1)
-
-    return days
-
-
-def get_hours(day):
-
-    try:
-        day = day[2:]
-    except:
-        logging.error(constants.MALFORMED_FILE)
-        sys.exit(1)
-
-    return day
+from acme.expections import MalformedFileError
 
 
 def get_day_abbrev(day):
@@ -42,21 +11,20 @@ def get_day_abbrev(day):
     try:
         day_abbrev = day[:2]
     except:
-        logging.error(constants.MALFORMED_FILE)
-        sys.exit(1)
+        print('day_abbrev')
+        raise MalformedFileError
 
     return day_abbrev
 
-
-def get_lines(file_content):
+def get_datetimes(day):
 
     try:
-        lines = file_content.split('\n')
+        day = day[2:]
     except:
-        logging.error(constants.MALFORMED_FILE)
-        sys.exit(1)
+        print('datetimes')
+        raise MalformedFileError
 
-    return lines
+    return day
 
 
 def get_employee_name(text_line):
@@ -64,8 +32,8 @@ def get_employee_name(text_line):
     try:
         employee_name = text_line.split('=')[0]
     except:
-        logging.error(constants.MALFORMED_FILE)
-        sys.exit(1)
+        print('employee name')
+        raise MalformedFileError
 
     return employee_name
 
@@ -75,14 +43,22 @@ def get_week_worked(text_line):
     try:
         week_worked = text_line.split('=')[1]
     except:
-        logging.error(constants.MALFORMED_FILE)
-        sys.exit(1)
-
+        print('week worked')
+        raise MalformedFileError
     return week_worked
 
+def get_times(hours):
+    
+    try:
+        start_time, end_time = hours.split('-')
+    except ValueError as e:
+        print('times')
+        raise MalformedFileError
+
+    return start_time, end_time
 
 def to_decimal_hours(time: str) -> float:
-    """Pass hours from string format HH:MM to hours in decimal"""
+    """Pass hours from string format HH:MM to hours decimal"""
 
     try:
         h, m = time.split(':')
@@ -92,13 +68,6 @@ def to_decimal_hours(time: str) -> float:
         sys.exit(1)
 
     return hours
-
-
-def wrong_time_range(start_time, end_time):
-    first_time = hours_to_string(start_time)
-    second_time = hours_to_string(end_time)
-    logging.error(f'{constants.WRONG_RANGE}: {first_time}-{second_time}')
-    sys.exit(1)
 
 
 def hours_to_string(hours: float) -> str:

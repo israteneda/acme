@@ -6,7 +6,7 @@ ERROR = -1
 
 FILE_NOT_FOUND = 'File not found.\nBe sure the file exists.'
 MALFORMED_FILE = 'File is malformed, please check the file'
-WRONG_RANGE = 'Invalid range of hours'
+WRONG_TIME_RANGE = 'Invalid range of hours'
 
 WEEKEND = ['SA', 'SU']
 
