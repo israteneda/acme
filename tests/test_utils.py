@@ -21,12 +21,12 @@ class TestUtils(unittest.TestCase):
 
         self.assertEqual(day, expected_day_abbrev)
 
-    def test_get_days(self):
+    def test_get_datatimes(self):
 
         expected_days = ['MO05:00-07:00', 'TU10:00-12:00']
-        days = utils.get_days('MO05:00-07:00,TU10:00-12:00')
+        datatimes = utils.get_datatimes('MO05:00-07:00,TU10:00-12:00')
 
-        self.assertEqual(days, expected_days)
+        self.assertEqual(datatimes, expected_days)
 
     def test_get_lines(self):
 
@@ -72,5 +72,10 @@ class TestUtils(unittest.TestCase):
 
         expected_hours = '20:00'
         hours = utils.hours_to_string(20.0)
+
+        self.assertEqual(hours, expected_hours)
+        
+        expected_hours = '00:00'
+        hours = utils.hours_to_string(0)
 
         self.assertEqual(hours, expected_hours)

@@ -1,6 +1,6 @@
 import os
-from acme.data.constants import *
-from acme.utils import *
+from acme.data.constants import FILE_NOT_FOUND
+from acme.utils import get_lines, get_employee_name, get_week_worked
 from acme.domain.employee import Employee
 
 

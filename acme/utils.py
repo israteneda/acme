@@ -15,7 +15,7 @@ def get_times(hours):
     return start_time, end_time
 
 
-def get_days(time_worked: str) -> List[str]:
+def get_datatimes(time_worked: str) -> List[str]:
 
     try:
         days = time_worked.split(',')

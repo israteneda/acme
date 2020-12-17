@@ -1,5 +1,5 @@
-from acme.data.constants import *
-from acme.files import *
+from acme.data.constants import SUCCESS, FAIL, ERROR
+from acme.files import get_employees_from_file, write_employees_data
 
 
 def processing(argv):

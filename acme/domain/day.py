@@ -1,9 +1,7 @@
-from acme.data.constants import *
+from acme.data.constants import WEEKEND, ONE_MINUTE
 from acme.domain.working_hours import WorkingHours
 from acme.data.shiftwork import shiftwork
 from acme.data.rates import rates
-from acme.utils import *
-from acme.data.constants import *
 
 
 class Day:
