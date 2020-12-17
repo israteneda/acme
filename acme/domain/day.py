@@ -24,8 +24,7 @@ class Day:
 
         working_hours = WorkingHours(hours)
         cost: float = 0
-        total_hours: float = working_hours.get_total()
-        accumulated_hours: float = 0
+        worked_hours: float = 0
         plus_one = False
 
         for index, shift in enumerate(shiftwork):
@@ -35,15 +34,15 @@ class Day:
             if working_hours.start_time_is_between(shift):
 
                 if working_hours.end_time <= shift.end_time:
-                    accumulated_hours = working_hours.end_time - working_hours.start_time
-                    cost += accumulated_hours * rate
+                    worked_hours = working_hours.end_time - working_hours.start_time
+                    cost += worked_hours * rate
                     if plus_one:
                         cost += ONE_MINUTE * rate
                         plus_one = False
 
                 else:
-                    accumulated_hours = shift.end_time - working_hours.start_time
-                    cost += accumulated_hours * rate
+                    worked_hours = shift.end_time - working_hours.start_time
+                    cost += worked_hours * rate
                     working_hours.start_time = shift.end_time + ONE_MINUTE
                     plus_one = True
 

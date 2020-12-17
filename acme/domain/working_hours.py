@@ -33,13 +33,5 @@ class WorkingHours:
         if self.start_time >= shift.start_time:
             if self.start_time <= shift.end_time:
                 ans = True
-        
+
         return ans
-
-    def get_total(self) -> float:
-        if self.end_time < self.start_time:
-            total_hours = MAX_HOUR - self.start_time + self.end_time
-        else:
-            total_hours = self.end_time - self.start_time
-
-        return total_hours

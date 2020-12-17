@@ -12,5 +12,3 @@ rates = {
         'weekend': 25
     }
 }
-
-
