@@ -1,5 +1,5 @@
 import unittest
-from acme.expections import MalformedFileError, WrongTimeRangeError
+from acme.exceptions import MalformedFileError, WrongTimeRangeError
 
 
 class TestExceptions(unittest.TestCase):

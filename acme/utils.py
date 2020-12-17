@@ -2,7 +2,7 @@ import sys
 import logging
 from typing import List
 from acme.data import constants
-from acme.expections import MalformedFileError
+from acme.exceptions import MalformedFileError
 from acme.data.constants import WEEKEND, WORKWEEK
 
 
@@ -58,7 +58,6 @@ def to_decimal_hours(time: str) -> float:
         h, m = time.split(':')
         hours = int(h) + int(m) / 60
     except ValueError:
-        print(time)
         raise MalformedFileError('Error parsing hours')
 
     return hours

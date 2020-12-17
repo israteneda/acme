@@ -1,6 +1,6 @@
 from acme.utils import to_decimal_hours, get_hours_minutes
 from acme.data.constants import MAX_HOUR, MIN_HOUR
-from acme.expections import WrongTimeRangeError
+from acme.exceptions import WrongTimeRangeError
 
 
 class WorkingHours:

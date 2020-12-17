@@ -2,7 +2,7 @@ import os
 from acme.data.constants import FILE_NOT_FOUND, EMPTY_FILE
 from acme.utils import get_employee_name, get_week_worked
 from acme.domain.employee import Employee
-from acme.expections import EmptyFileError
+from acme.exceptions import EmptyFileError
 
 
 def get_employees_from_file(file):

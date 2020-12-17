@@ -1,6 +1,6 @@
 from acme import utils
 from acme.domain.day import Day
-from acme.expections import MalformedFileError
+from acme.exceptions import MalformedFileError
 
 
 class Employee:
