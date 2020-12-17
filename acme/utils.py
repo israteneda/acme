@@ -1,5 +1,4 @@
 import sys
-import math
 import logging
 from typing import List
 from acme.data import constants
@@ -40,16 +39,16 @@ def get_week_worked(text_line):
     try:
         week_worked = text_line.split('=')[1]
     except:
-        print('week worked')
-        raise MalformedFileError
+        raise MalformedFileError('Error obtaining employee name')
+
     return week_worked
 
-def get_times(hours):
+def get_hours_minutes(hours):
     
     try:
         start_time, end_time = hours.split('-')
     except ValueError as e:
-        raise MalformedFileError('Error obtaining day times')
+        raise MalformedFileError('Error obtaining hours and minutes times')
 
     return start_time, end_time
 

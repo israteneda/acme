@@ -4,8 +4,8 @@ from acme import utils
 
 class TestUtils(unittest.TestCase):
 
-    def test_get_times(self):
-        start_time, end_time = utils.get_times('10:00-12:00')
+    def test_get_hours_and_minutes(self):
+        start_time, end_time = utils.get_hours_minutes('10:00-12:00')
 
     def test_get_datetimes(self):
 

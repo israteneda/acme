@@ -1,4 +1,4 @@
-from acme.utils import to_decimal_hours, get_times
+from acme.utils import to_decimal_hours, get_hours_minutes
 from acme.data.constants import MAX_HOUR, MIN_HOUR
 from acme.expections import WRONG_TIME_RANGE
 
@@ -6,7 +6,7 @@ from acme.expections import WRONG_TIME_RANGE
 class WorkingHours:
 
     def __init__(self, hours: str):
-        self.start_time, self.end_time = get_times(hours)
+        self.start_time, self.end_time = get_hours_minutes(hours)
         self._to_hours()
 
     def _to_hours(self):
