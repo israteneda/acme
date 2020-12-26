@@ -41,6 +41,8 @@ class Day:
                 else:
                     worked_hours = shift.end_time - working_hours.start_time
                     cost += worked_hours * rate
+                    if plus_one:
+                        cost += ONE_MINUTE * rate
                     working_hours.start_time = shift.end_time + ONE_MINUTE
                     plus_one = True
 

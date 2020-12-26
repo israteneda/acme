@@ -53,9 +53,14 @@ def get_week_worked(text_line):
 
 def to_decimal_hours(time: str) -> float:
     """Pass hours from string format HH:MM to hours decimal"""
-
-    try:
+    try: 
         h, m = time.split(':')
+        m = m.rstrip('\n')
+        # These validations move to _check_hours()
+        if len(m) > 2:
+            raise MalformedFileError('Error in length of minutes')
+        if int(m) > 60:
+            raise MalformedFileError('Error in minutes times')
         hours = int(h) + int(m) / 60
     except ValueError:
         raise MalformedFileError('Error parsing hours')
