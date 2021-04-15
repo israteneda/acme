@@ -6,7 +6,6 @@ from acme.exceptions import WrongTimeRangeError
 class WorkingHours:
     """
     Employees' working hours
-
     """
 
     def __init__(self, hours: str):
