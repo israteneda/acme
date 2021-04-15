@@ -5,6 +5,10 @@ from acme.data.rates import rates
 
 
 class Day:
+    """
+    A period of 24 hours beginning at midnight,
+    one of the seven time periods that make up a week.
+    """
 
     def __init__(self, day_abbrev: str):
         self.day_abbrev = day_abbrev
