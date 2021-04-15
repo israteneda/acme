@@ -4,6 +4,10 @@ from acme.exceptions import WrongTimeRangeError
 
 
 class WorkingHours:
+    """
+    Employees' working hours
+
+    """
 
     def __init__(self, hours: str):
         self.start_time, self.end_time = get_hours_minutes(hours)
