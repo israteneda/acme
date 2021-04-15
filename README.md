@@ -95,7 +95,7 @@ And for time management I used [Pomodoro Technique](https://en.wikipedia.o
 
 </details>
 
-<details><summary>Install Manually</summary>
+<details><summary>Install from source</summary>
 
 Clone the project:
 
@@ -103,7 +103,7 @@ Clone the project:
 git clone https://github.com/israteneda/acme
 ```
 
-Change directory to the app directory:
+Change to the app directory:
 
 ```
 cd acme
