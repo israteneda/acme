@@ -103,7 +103,7 @@ Clone the project:
 git clone https://github.com/israteneda/acme
 ```
 
-Change directory to the app directory:
+Change to the app directory:
 
 ```
 cd acme
